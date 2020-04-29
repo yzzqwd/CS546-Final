@@ -1,0 +1,13 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "An application that allows users to track fitness data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Qiushi Chu, Joseph Naiburg, Ava Tartaglia, Zhuo Yang",
+  "license": "ISC"
+}
+
