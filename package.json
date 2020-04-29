@@ -8,6 +8,10 @@
     "start": "node app.js"
   },
   "author": "Qiushi Chu, Joseph Naiburg, Ava Tartaglia, Zhuo Yang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "handlebars": "^4.7.6"
+  }
 }
-
