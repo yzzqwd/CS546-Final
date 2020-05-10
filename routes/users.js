@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 router.get('/', async (req, res) => {
     if (req.session.user) {
-        res.redirect('/private');
+        res.redirect('/posts');
     } else {
         res.render('login');
     }
@@ -14,20 +14,22 @@ router.get('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const input = req.body;
-    const username = input['nameProperty'];
-    const password = input['nameProperty'];
+    const username = input['username'];
+    const password = input['password'];
     let result = false;
+    
     try {
         const user = await userData.getByUsername(username);
         result = await bcrypt.compare(password, user.hashedPassword);
     } catch (e) {
-        console.log(e);
+        console.log('Username is not existed!');
     }
+
     if (result) {
         req.session.user = {username : username};
-        res.redirect('/private');
+        res.redirect('/posts');
     } else {
-        res.status(401).render('login', {
+        res.render('login', {
             error: true
         });
     }
