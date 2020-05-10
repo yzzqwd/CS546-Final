@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const session = require('express-session');
 const configRoutes = require('./routes');
 const exphbs = require('express-handlebars');
 
@@ -12,6 +12,15 @@ app.set('view engine', 'handlebars');
  
 const static = express.static(__dirname + '/public');
 app.use('/public', static);
+
+app.use(
+    session({
+        name: 'Group3Cookie',
+        secret: 'Some secrets that you dont know!',
+        resave: false,
+        saveUninitialized: true
+    })
+);
 
 configRoutes(app);
 app.listen(3000, () => {
