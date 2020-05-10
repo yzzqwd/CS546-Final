@@ -49,7 +49,8 @@ module.exports = {
 			throw `Could not delete health status of user with id of ${id}`;
 		}
 		return h;
-	},
+    },
+    //need to be fixed
 	async updateHealth(userId,height,weight,mc,BMI,BF) {
 		if (!userId) throw 'You must provide an userId';
         if (!mc) throw 'You must provide your mc';
@@ -70,4 +71,4 @@ module.exports = {
 		if (updatedInfo.modifiedCount === 0) throw 'Could not update health status';
 		return await this.get(userId);
 	}
-}
+};
