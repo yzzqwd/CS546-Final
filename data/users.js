@@ -1,7 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = mongoCollections.groups;
-onst bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
     async get(id) {
