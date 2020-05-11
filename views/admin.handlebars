@@ -1,9 +1,16 @@
 {{#each users}}
 <p>{{username}}</p>
-<button name="deleteu">Delete User</button>
-{{/each}}
 
+<button name="get-posts" id="get-posts">Show posts</button>
+
+<div id="user-posts" class="hidden">
 {{#each posts}}
 {{id}}
 <button name="deletep">Delete Post</button>
 {{/each}}
+</div>
+
+
+<button name="deleteu">Delete User</button>
+{{/each}}
+
