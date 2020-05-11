@@ -1,6 +1,11 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = mongoCollections.groups;
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> c072ab5870d4742c804de155323ea75570ea14b9
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
@@ -22,7 +27,11 @@ module.exports = {
 		return userList;
 	},
 
+<<<<<<< HEAD
+	async create(firstName, lastName, username,gender,email,city,state,age, hashedPassword) {
+=======
 	async create(firstName, lastName, username,gender,email,city,state,age,hashedPassword) {
+>>>>>>> c072ab5870d4742c804de155323ea75570ea14b9
         if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
         if (!username) throw 'You must provide a username';
@@ -30,8 +39,13 @@ module.exports = {
         if (!email) throw 'You must provide email';
         if (!city) throw 'You must provide city';
         if (!state) throw 'You must provide state';
+<<<<<<< HEAD
+		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
+		if (!hashedPassword) throw 'You must provide a password';
+=======
 		if (!age) throw 'You must provide a valid age';
 		if (!hashedPassword) throw 'You must provide hash';
+>>>>>>> c072ab5870d4742c804de155323ea75570ea14b9
 		const usersCollection = await users();
 		let newUser = {
 			firstName: firstName,
@@ -43,8 +57,12 @@ module.exports = {
             state:state,
 			age:age,
 			posts:[],
+<<<<<<< HEAD
+			hashedPassword: hashedPassword
+=======
 			hashedPassword:hashedPassword,
 			group_id:""
+>>>>>>> c072ab5870d4742c804de155323ea75570ea14b9
 		};
 		const insertInfo = await usersCollection.insertOne(newUser);
 		if (insertInfo.insertedCount === 0) throw 'Could not add user';
