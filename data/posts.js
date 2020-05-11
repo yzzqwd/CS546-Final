@@ -70,4 +70,9 @@ module.exports = {
 		const pList = await postCollection.find({}).toArray();
 		return pList;
     },
+    async getAllByUserId(userId) {
+        const postCollection = await posts();
+        const pList = await postCollection.find({userId:userId}).toArray();
+        return pList;
+    }
 };
