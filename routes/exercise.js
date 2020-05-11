@@ -47,3 +47,5 @@ router.patch('/add', async (req, res) => {
         res.render('addexercise');
     }
 })
+
+module.exports = router
