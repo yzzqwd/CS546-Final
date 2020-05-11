@@ -1,5 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const groups = mongoCollections.groups;
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
