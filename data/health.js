@@ -15,21 +15,16 @@ module.exports = {
 		return hList;
 	},
 
-	async create(userId,height,weight,mc,BMI,BF) {
+	async create(userId) {
         if (!userId) throw 'You must provide an userId';
-        if (!mc) throw 'You must provide your mc';
-        if (!height || typeof(height) !== 'number'|| height <= 0) throw 'You must provide a vaild height';
-        if (!weight || typeof(weight) !== 'number'|| weight <= 0) throw 'You must provide a vaild weight';
-        if (!BMI || typeof(BMI) !== 'number'|| BMI <= 0) throw 'You must provide a vaild BMI';
-        if (!BF || typeof(BF) !== 'number'|| BF <= 0 || BF >= 100) throw 'You must provide a vaild BF%';
 		const healthCollection = await health();
 		let newHealth = {
             userId:userId,
-            height:height,
-            weight:weight,
-            medicalConditions:mc,
-            BMI:BMI,
-            BF:BF
+            height:0,
+            weight:0,
+            medicalConditions:"",
+            BMI:0,
+            BF:0
         };
         const temp = await this.get(userId);
         if(temp !== null) throw 'Already created';
@@ -50,7 +45,6 @@ module.exports = {
 		}
 		return h;
     },
-    //need to be fixed
 	async updateHealth(userId,height,weight,mc,BMI,BF) {
 		if (!userId) throw 'You must provide an userId';
         if (!mc) throw 'You must provide your mc';
