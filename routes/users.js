@@ -25,7 +25,7 @@ router.post('/login', async (req, res) => {
     
     try {
         user = await userData.getByUsername(username);
-        result = await bcrypt.compare(password, user.hashedPassword);
+        result = await bcrypt.compare(password, user.password);
     } catch (e) {
         console.log('Username is not existed!');
     }
