@@ -5,8 +5,16 @@ const userData = data.users;
 const bcrypt = require('bcryptjs');
 
 router.get('/', async (req, res) => {
-    res.redirect('/posts');
+    if(!req.session.user) {
+        res.redirect('/signup')
+    } else {
+        res.redirect('/posts')
+    }
 });
+
+router.get('/login', async(req, res) => {
+    res.render('login', {pageTitle: 'log in'})
+})
 
 router.post('/login', async (req, res) => {
     const input = req.body;
