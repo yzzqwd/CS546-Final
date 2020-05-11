@@ -22,6 +22,30 @@ app.use(
     })
 );
 
+app.use('/posts', async (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/');
+    } else {
+        next();
+    }
+});
+
+app.use('/health', async (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/');
+    } else {
+        next();
+    }
+});
+
+app.use('/exercise', async (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/');
+    } else {
+        next();
+    }
+});
+
 configRoutes(app);
 app.listen(3000, () => {
 	console.log("We've now got a server!");

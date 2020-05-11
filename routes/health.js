@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
     });
 });
 
-router.get('/add', async (req, res) => {
+router.get('/update', async (req, res) => {
     res.render('addhealth');
 });
 
-router.post('/add', async (req, res) => {
+router.patch('/update', async (req, res) => {
     const input = req.body;
     const weight = input['weight'];
     const height = input['height'];
@@ -35,15 +35,31 @@ router.post('/add', async (req, res) => {
     const BF = input['BF'];
     const userId = req.session.user.userId;
 
-    if (!health || !height || !mc || !BMI || !BF) {
+    if (!health && !height && !mc && !BMI && !BF) {
         res.render('addhealth', {
-            miss: true
+            blank: true
         });
         return;
     }
 
     try {
-        await healthData.create(userId, height, weight, mc, BMI, BF);
+        const oldHealth = await healthData.get(userId);
+        if (!weight) {
+            weight = oldHealth.weight;
+        }
+        if (!height) {
+            height = oldHealth.height;
+        }
+        if (!mc) {
+            mc = oldHealth.mc;
+        }
+        if (!BMI) {
+            BMI = oldHealth.BMI;
+        }
+        if (!BF) {
+            BF = oldHealth.BF;
+        }
+        await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
         res.redirect('/health');
     } catch (e) {
         res.render('addhealth');

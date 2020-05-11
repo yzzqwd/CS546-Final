@@ -1,8 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = mongoCollections.groups;
-onst bcrypt = require('bcryptjs');
-
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
@@ -24,7 +22,7 @@ module.exports = {
 		return userList;
 	},
 
-	async create(firstName, lastName, username,gender,email,city,state,age, password) {
+	async create(firstName, lastName, username,gender,email,city,state,age,hashedPassword) {
         if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
         if (!username) throw 'You must provide a username';
@@ -33,8 +31,7 @@ module.exports = {
         if (!city) throw 'You must provide city';
         if (!state) throw 'You must provide state';
 		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
-		if (!password) throw 'You must provide a password';
-		if (password.length > 10) throw 'Length of password should be less than 10 characters'
+		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
 			firstName: fristName,
@@ -46,7 +43,8 @@ module.exports = {
             state:state,
 			age:age,
 			posts:[],
-			password: password
+			hashedPassword:hashedPassword,
+			group_id:""
 		};
 		const insertInfo = await usersCollection.insertOne(newUser);
 		if (insertInfo.insertedCount === 0) throw 'Could not add user';
@@ -63,10 +61,10 @@ module.exports = {
 		if (deletionInfo.deletedCount === 0) {
 			throw `Could not delete user with id of ${id}`;
 		}
+		await groups.removeUserFromGroup(user.group_id,id);
 		return user;
 	},
-	//need to be fixed 
-	async updateUser(userId,firstName, lastName, username,gender,email,city,state,age) {
+	async updateUser(userId,firstName, lastName, username,gender,email,city,state,age,posts,group_id) {
 		if (!userId) throw 'You must provide userId';
 		if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
@@ -74,7 +72,8 @@ module.exports = {
         if (!gender) throw 'You must provide gender';
         if (!email) throw 'You must provide email';
         if (!city) throw 'You must provide city';
-        if (!state) throw 'You must provide state';
+		if (!state) throw 'You must provide state';
+		if (!group_id) throw 'You must provide group_id';
 		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
 		const usersCollection = await users();
 		let newUser = {
@@ -86,7 +85,9 @@ module.exports = {
             city:city,
             state:state,
 			age:age,
-			posts:[]
+			posts:posts,
+			hashedPassword:hashedPassword,
+			group_id:group_id
 		};
 		const updatedInfo = await usersCollection.updateOne({_id:userId},{$set:newUser});
 		if (updatedInfo.modifiedCount === 0) throw 'Could not update user';
@@ -98,11 +99,12 @@ module.exports = {
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add post to user';
 		return true;
 	},
+
 	async removePostFromUser(id,postId) {
 		const usersCollection = await users();
 		const updateInfo = await usersCollection.updateOne({_id,id},{$pull:{posts:{id:postId}}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove post from user';
 		return true;
-	}
+	},
 
 };
