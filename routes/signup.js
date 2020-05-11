@@ -21,14 +21,12 @@ router.post('/', async (req, res) => {
     const password = input['password'];
     const comfirm = input['confirm'];
     
-    const hashedPassword;
+    let hashedPassword;
     let usedUsername = false;
 
     if (!firstname || !lastname || !email || !gender || !city || ! state || !age || !username || !password || !comfirm) {
         res.render('signup', {
-            miss: true,
-            // usedUsername: false,
-            // notComfirmed: false
+            miss: true
         });
         return;
     }
@@ -37,14 +35,12 @@ router.post('/', async (req, res) => {
         await userData.getByUsername(username);
         usedUsername = true;
     } catch (e) {
-        console.log('The username can be used!');
+        console.log(e);
     }
 
     if (usedUsername) {
         res.render('signup', {
-            // miss: false,
-            usedUsername: true,
-            // notComfirmed: false
+            usedUsername: true
         });
         return;
     }
@@ -53,16 +49,15 @@ router.post('/', async (req, res) => {
         hashedPassword = await bcrypt.hash(password, 15);
     } else {
         res.render('signup', {
-            // miss: false,
-            // usedUsername: false,
             notComfirmed: true
         });
         return;
     }
 
     try {
-        await userData.create(firstname, lastname, username, gender, email, city, state, age, hashedPassword);
-        res.render('login');
+        const user = await userData.create(firstname, lastname, username, gender, email, city, state, age, hashedPassword);
+        req.session.user = {username: username, userId: user._id};
+        res.redirect('/health');
     } catch (e) {
         res.render('signup');
     }
