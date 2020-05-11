@@ -1,7 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = mongoCollections.groups;
-onst bcrypt = require('bcryptjs');
+
 
 module.exports = {
     async get(id) {
@@ -24,7 +24,7 @@ module.exports = {
 		return userList;
 	},
 
-	async create(firstName, lastName, username,gender,email,city,state,age, password) {
+	async create(firstName, lastName, username,gender,email,city,state,age, hashedPassword) {
         if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
         if (!username) throw 'You must provide a username';
@@ -33,8 +33,7 @@ module.exports = {
         if (!city) throw 'You must provide city';
         if (!state) throw 'You must provide state';
 		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
-		if (!password) throw 'You must provide a password';
-		if (password.length > 10) throw 'Length of password should be less than 10 characters'
+		if (!hashedPassword) throw 'You must provide a password';
 		const usersCollection = await users();
 		let newUser = {
 			firstName: fristName,
@@ -46,7 +45,7 @@ module.exports = {
             state:state,
 			age:age,
 			posts:[],
-			password: password
+			hashedPassword: hashedPassword
 		};
 		const insertInfo = await usersCollection.insertOne(newUser);
 		if (insertInfo.insertedCount === 0) throw 'Could not add user';
