@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const userData = data.users;
+const healthData = data.health;
+const exerciseData = data.exercise;
 const bcrypt = require('bcryptjs');
 
 router.get('/', async (req, res) => {
@@ -56,6 +58,8 @@ router.post('/', async (req, res) => {
 
     try {
         const user = await userData.create(firstname, lastname, username, gender, email, city, state, age, hashedPassword);
+        await healthData.create(user._id);
+        await exerciseData.create(user._id);
         req.session.user = {userId: user._id};
         res.redirect('/health');
     } catch (e) {

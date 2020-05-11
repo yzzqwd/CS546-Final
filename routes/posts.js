@@ -18,8 +18,7 @@ router.get('/', async (req, res) => {
     }
         
     res.render('posts', {
-        posts: user.posts,
-        pageTitle: "Posts"
+        posts: user.posts
     });
 });
 
