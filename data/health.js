@@ -50,7 +50,6 @@ module.exports = {
 		}
 		return h;
     },
-    //need to be fixed
 	async updateHealth(userId,height,weight,mc,BMI,BF) {
 		if (!userId) throw 'You must provide an userId';
         if (!mc) throw 'You must provide your mc';
