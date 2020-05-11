@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.render('signup');
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/', async (req, res) => {
     const input = req.body;
     const firstname = input['firstname'];
     const lastname = input['lastname'];

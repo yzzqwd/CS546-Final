@@ -5,26 +5,22 @@ const userData = data.users;
 const postData = data.posts;
 
 router.get('/', async (req, res) => {
-    if(req.session.user) {
-        const userId = req.session.user.userId;
-        let user = {};
+    const userId = req.session.user.userId;
+    let user = {};
         
-        try {
-            user = await userData.get(userId);
-            for (i = 0; i < user.posts.length; i++) {
-                user.posts[i] = await postData.get(user.post[i]);
-            }
-        } catch (e) {
-            console.log(e);
+    try {
+        user = await userData.get(userId);
+        for (i = 0; i < user.posts.length; i++) {
+            user.posts[i] = await postData.get(user.post[i]);
         }
-        
-        res.render('posts', {
-            posts: user.posts,
-            pageTitle: "Posts"
-        });
-    } else {
-        res.redirect('/signup')
+    } catch (e) {
+        console.log(e);
     }
+        
+    res.render('posts', {
+        posts: user.posts,
+        pageTitle: "Posts"
+    });
 });
 
 
