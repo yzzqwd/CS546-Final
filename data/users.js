@@ -36,7 +36,6 @@ module.exports = {
 		if (!password) throw 'You must provide a password';
 		if (password.length > 10) throw 'Length of password should be less than 10 characters'
 		const usersCollection = await users();
-		password = await Bcrypt.hash(password, 15);
 		let newUser = {
 			firstName: fristName,
             lastName: lastName,
