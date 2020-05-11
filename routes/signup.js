@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
 
     try {
         const user = await userData.create(firstname, lastname, username, gender, email, city, state, age, hashedPassword);
-        req.session.user = {username: username, userId: user._id};
+        req.session.user = {userId: user._id};
         res.redirect('/health');
     } catch (e) {
         res.render('signup');

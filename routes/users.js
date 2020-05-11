@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
     }
 
     if (result) {
-        req.session.user = {username: username, userId: user._id};
+        req.session.user = {userId: user._id};
         res.redirect('/posts');
     } else {
         res.render('login', {

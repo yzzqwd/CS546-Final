@@ -10,12 +10,7 @@ router.get('/', async (req, res) => {
     let health = {};
 
     try {
-        user = await userData.getByUsername(req.session.user.username);
-    } catch (e) {
-        console.log(e);
-    }
-
-    try {
+        user = await userData.get(userId);
         health = await healthData.get(userId);
     } catch (e) {
         console.log(e);
@@ -25,7 +20,7 @@ router.get('/', async (req, res) => {
         user: user,
         health: health
     });
-})
+});
 
 router.get('/add', async (req, res) => {
     res.render('addhealth');
@@ -54,3 +49,5 @@ router.post('/add', async (req, res) => {
         res.render('addhealth');
     }
 });
+
+module.exports = router;
