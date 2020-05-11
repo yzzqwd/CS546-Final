@@ -30,11 +30,11 @@ module.exports = {
         if (!email) throw 'You must provide email';
         if (!city) throw 'You must provide city';
         if (!state) throw 'You must provide state';
-		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
+		if (!age) throw 'You must provide a valid age';
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
-			firstName: fristName,
+			firstName: firstName,
             lastName: lastName,
             username:username,
             gender:gender,
