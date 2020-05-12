@@ -95,17 +95,14 @@ module.exports = {
 	},
 	async addPostToUser(id,postId) {
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne(
-			{_id,id},
-			{$addToSet: {posts: {id:postId}}}
-		);
+		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:{id:postId}}});
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add post to user';
 		return true;
 	},
 
 	async removePostFromUser(id,postId) {
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne({_id,id},{$pull:{posts:{id:postId}}});
+		const updateInfo = await usersCollection.updateOne({_id:id},{$pull:{posts:{id:postId}}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove post from user';
 		return true;
 	},

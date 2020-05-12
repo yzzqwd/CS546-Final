@@ -45,13 +45,13 @@ module.exports = {
 	//group and user are complicated 
 	async addUserToGroup(id,userId) {
 		const groupsCollection = await groups();
-		const updateInfo = await groupsCollection.updateOne({_id,id},{$addToSet:{members:{id:userId}}});
+		const updateInfo = await groupsCollection.updateOne({_id:id},{$addToSet:{members:{id:userId}}});
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add user to group';
 		return true;
 	},
 	async removeUserFromGroup(id,userId) {
 		const groupsCollection = await groups();
-		const updateInfo = await groupsCollection.updateOne({_id,id},{$pull:{members:{id:userId}}});
+		const updateInfo = await groupsCollection.updateOne({_id:id},{$pull:{members:{id:userId}}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove user from group';
 		return true;
 	}
