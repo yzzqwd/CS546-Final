@@ -19,14 +19,14 @@ router.post('/', async (req, res) => {
     const city = input['city'];
     const state = input['state'];
     const age = input['age'];
-    const username = input['username'];
-    const password = input['password'];
-    const comfirm = input['confirm'];
+    const username = input['un '];
+    const password = input['pass'];
+    const comfirm = input['pass2'];
     
     let hashedPassword;
     let usedUsername = false;
 
-    if (!firstname || !lastname || !email || !gender || !city || ! state || !age || !username || !password || !comfirm) {
+    if (!firstname || !lastname || !email || !gender || !city || !state || !age || !username || !password || !comfirm) {
         res.render('signup', {
             miss: true
         });
