@@ -6,7 +6,14 @@
     <textarea name="caption" rows="4" placeholder="Enter caption here" class="full-width-input"></textarea>
 
   <label for="img">Image</label>
-  <input name="img" type="text" align="center" placeholder="Enter Link to Image" required>
+  <input name="img" type="text" align="center" placeholder="Enter Link to Image">
 
     <button type="submit">Create Post</button>
+    <div>
+    {{#if miss}}
+    <p class="error">
+      You must input an image and a caption
+    </p>
+    {{/if}}
+    </div>
 </form>
