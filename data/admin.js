@@ -1,6 +1,7 @@
 //remove post, remove user, get user, get post
 const mongoCollections = require('../config/mongoCollections');
 const admin = mongoCollections.admin;
+const uuid = require('uuid');
 module.exports = {
     async getByUserName(username) {
 		if (!username) throw 'You must provide name to search for';
@@ -13,6 +14,7 @@ module.exports = {
         if (!username) throw 'You must provide username';
         const adminCollection = await admin();
         let newA = {
+            _id: uuid(),
             username:username,
             hashedPassword:hashedPassword
         }

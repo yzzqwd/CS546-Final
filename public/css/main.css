@@ -19,7 +19,7 @@
 }
 
 .logo h1 {
-    color: white;
+    color: rgb(240, 13, 13);
     height: 100%;
     display: table-cell;
     vertical-align: middle;
@@ -44,9 +44,13 @@
     display: table-cell;
     vertical-align: middle;
     height: 100%;
-    color: white;
+    color: rgb(235, 13, 13);
     font-family: fantasy;
     font-size: 28px;
+}
+
+.navigate a li:hover {
+    font-size: 32px;
 }
 
 body {
@@ -83,4 +87,21 @@ h2 {
 
 .hidden {
     display: none;
+}
+
+img {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+
+.main {
+    margin: 0 auto;
+}
+
+.error {
+    background-color: red;
+    color: white;
+    font-size: 10pt;
+    border-style: groove
 }

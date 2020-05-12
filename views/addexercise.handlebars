@@ -1,13 +1,37 @@
+<div class="header">
+    <div class="inner">
+        <div class="logo">
+            <h1>Fitness Site</h1>
+        </div>
+        <ul class="navigate">
+            <a href="/posts"><li>Home</li></a>
+            <a href="/health"><li>Health</li></a>
+            <a href="/exercise"><li>Exercise</li></a>
+            <a href="/group"><li>Group</li></a>
+            <a href="/logout"><li>Logout</li></a>
+        </ul>
+    </div>
+</div>
+
 <h2>Add exercise Data</h2>
-<form action="/exercise" method="POST">
-    <select id="type" name="Exercise Type">
+<form action="/exercise/add" method="POST">
+
+    <input type="hidden" name="_method" value="PATCH">
+
+    <select id="type" name="type">
         <option value="Indoor">Indoor</option>
         <option value="Outdoor">Outdoor</option>
         <option value="Other">Other</option>
     </select>
 
-    
-    <input name="description" type="text" placeholder="description of exercise">
+
+    <input name="sport" type="text" placeholder="description of exercise">
 
     <button type="submit">Submit Exercise</button>
+
+    {{#if miss}}
+    <p class="error">
+        You must choose a type and enter a description
+    </p>
+    {{/if}}
 </form>

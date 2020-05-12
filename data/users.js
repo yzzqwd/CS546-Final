@@ -1,10 +1,14 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
-const groups = mongoCollections.groups;
+const groups = require('./groups');
+const ObjectID = require('mongodb').ObjectID
+const uuid = require('uuid');
+
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
 		const usersCollection = await users();
+		id = ObjectID(id)
 		const user = await usersCollection.findOne({ _id: id });
 		if (user === null) throw 'No user with that id';
 		return user;
@@ -34,6 +38,7 @@ module.exports = {
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
+			_id: uuid(),
 			firstName: firstName,
             lastName: lastName,
             username:username,
@@ -94,17 +99,19 @@ module.exports = {
 		return await this.get(userId);
 	},
 	async addPostToUser(id,postId) {
+		console.log(id)
+		id = ObjectID(id)
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne({_id,id},{$addToSet:{posts:{id:postId}}});
+		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:postId}});
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add post to user';
-		return true;
+		return await this.get(id);
 	},
 
 	async removePostFromUser(id,postId) {
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne({_id,id},{$pull:{posts:{id:postId}}});
+		const updateInfo = await usersCollection.updateOne({_id:id},{$pull:{posts:postId}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove post from user';
-		return true;
+		return await this.get(id);
 	},
 
 };

@@ -9,16 +9,20 @@ router.get('/', async (req, res) => {
     let user = {};
         
     try {
-        user = await userData.get(userId);
+        /*user = await userData.get(userId);
         for (i = 0; i < user.posts.length; i++) {
             user.posts[i] = await postData.get(user.post[i]);
-        }
+        }*/
+        posts = await postData.getAll()
+        //console.log(posts)
     } catch (e) {
         console.log(e);
     }
         
     res.render('posts', {
-        posts: user.posts
+       // posts: user.posts
+        posts: posts
+
     });
 });
 
