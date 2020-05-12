@@ -9,10 +9,19 @@
               <label for="pass">Password</label> <br>
               <input name="pass" type="password" align="center" placeholder=" Enter Password">
               <br>
+
+              {{#if error}}
+                <p>
+                Incorrect username or password
+                </p>
+              {{/if}} 
+
               <button type="submit" align="center">Sign in</button>
 
             <p class="signup" align="center"><a href="/signup">No Account?</p>
-            <p><a href="/adminlogin">Administrator Login</a></p>         
+            <p><a href="/adminlogin">Administrator Login</a></p>    
+
+                
     </div> 
 </body>
 
