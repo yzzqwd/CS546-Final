@@ -72,7 +72,6 @@ router.post('/adminlogin', async (req, res) => {
             errot: true
         });
     }
-})
-
+});
 
 module.exports = router;

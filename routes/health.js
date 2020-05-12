@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const userData = data.users;
 const healthData = data.health;
+const bcrypt = require('bcryptjs');
 
 router.get('/', async (req, res) => {
     const userId = req.session.user.userId;
@@ -24,6 +25,67 @@ router.get('/', async (req, res) => {
 
 router.get('/update', async (req, res) => {
     res.render('addhealth');
+});
+
+router.get('/updateUser', async (req, res) => {
+    res.render('updateUser');
+});
+
+router.patch('/updateUser', async (req, res) => {
+    const input = req.body;
+    const firstname = input['firstname'];
+    const lastname = input['lastname'];
+    const email = input['email'];
+    const gender = input['gender'];
+    const city = input['city'];
+    const state = input['state'];
+    const age = input['age'];
+    const password = input['password'];
+    const userId = req.session.user.userId;
+
+    if (!firstname && !lastname && !email && !gender && !city && ! state && !age && !password) {
+        res.render('signup', {
+            blank: true
+        });
+        return;
+    }
+
+    try {
+        const oldUser = await userData.get(userId);
+        const username = oldUser.username;
+        const posts = oldUser.posts;
+        const group_id = oldUser.group_id;
+        if (!firstname) {
+            firstname = oldUser.firstname;
+        }
+        if (!lastname) {
+            lastname = oldUser.lastname;
+        }
+        if (!email) {
+            email = oldUser.email;
+        }
+        if (!gender) {
+            gender = oldUser.gender;
+        }
+        if (!age) {
+            age = oldUser.age;
+        }
+        if (!city) {
+            city = oldUser.city;
+        }
+        if (!state) {
+            state = oldUser.state;
+        }
+        if (!password) {
+            password = oldUser.hashedPassword;
+        } else {
+            password = await bcrypt.hash(password, 15);
+        }
+        await userData.updateUser(userId, firstName, lastName, username, gender, email, city, state, age, password, posts, group_id);
+        res.redirect('/health');
+    } catch (e) {
+        res.render('updateUser');
+    }
 });
 
 router.patch('/update', async (req, res) => {
