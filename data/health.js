@@ -16,7 +16,7 @@ module.exports = {
 	},
 
 	async create(userId) {
-        if (!userId) throw 'You must provide an userId';
+		if (!userId) throw 'You must provide an userId';
 		const healthCollection = await health();
 		let newHealth = {
             userId:userId,
@@ -25,13 +25,14 @@ module.exports = {
             medicalConditions:"",
             BMI:0,
             BF:0
-        };
-        const temp = await this.get(userId);
-        if(temp !== null) throw 'Already created';
-        const insertInfo = await healthCollection.insertOne(newHealth);
+		};
+		//const temp = await this.get(userId); The program won't run past this line since it will throw an error, need to find another way to error check this
+		//if(temp !== null) throw 'Already created';
+		const insertInfo = await healthCollection.insertOne(newHealth);
 		if (insertInfo.insertedCount === 0) throw 'Could not add health status';
 		//const newId = insertInfo.insertedId;
 		const h = await this.get(userId);
+		console.log("9")
 		return h;
     },
     

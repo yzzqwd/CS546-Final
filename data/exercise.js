@@ -18,8 +18,8 @@ module.exports = {
             indoors:[],
             others:[]
         };
-        const temp = await this.get(userId);
-        if(temp !== null) throw 'Already created';
+        //const temp = await this.get(userId); This has the same problem as health. It's not gonna run further since this doesn't exist
+        //if(temp !== null) throw 'Already created';
         const insertInfo = await exerciseCollection.insertOne(newExercise);
 		if (insertInfo.insertedCount === 0) throw 'Could not create exerices';
 		//const newId = insertInfo.insertedId;
