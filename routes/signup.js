@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
     let usedUsername = false;
 
     if (!firstname || !lastname || !email || !gender || !city || !state || !age || !username || !password || !comfirm) {
-        console.log("1")
         res.render('signup', {
             miss: true
         });
@@ -42,7 +41,6 @@ router.post('/', async (req, res) => {
     }
 
     if (usedUsername) {
-        console.log("2")
         res.render('signup', {
             usedUsername: true
         });
@@ -52,7 +50,6 @@ router.post('/', async (req, res) => {
     if (password == comfirm) {
         hashedPassword = await bcrypt.hash(password, 15);
     } else {
-        console.log("3")
         res.render('signup', {
             notComfirmed: true
         });
@@ -60,18 +57,12 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        console.log("1")
         const user = await userData.create(firstname, lastname, username, gender, email, city, state, age, hashedPassword);
-        console.log("2")
         await healthData.create(user._id);
-        console.log("3")
         await exerciseData.create(user._id);
-        console.log("4")
         req.session.user = {userId: user._id};
-        console.log("5")
         res.redirect('/health');
     } catch (e) {
-        //console.log("4")
         res.render('signup');
     }
 })
