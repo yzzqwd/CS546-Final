@@ -17,7 +17,7 @@ module.exports = {
         if (!userId) throw 'You must provide an userId';
 		const exerciseCollection = await exercise();
 		let newExercise = {
-            _id: uuid(),
+           // _id: uuid(),
             userId:userId,
             outdoors:[],
             indoors:[],

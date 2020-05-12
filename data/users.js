@@ -38,7 +38,7 @@ module.exports = {
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
-			_id: uuid(),
+			//_id: uuid(),
 			firstName: firstName,
             lastName: lastName,
             username:username,

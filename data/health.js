@@ -23,7 +23,7 @@ module.exports = {
 		if (!userId) throw 'You must provide an userId';
 		const healthCollection = await health();
 		let newHealth = {
-			_id: uuid(),
+			//_id: uuid(),
             userId:userId,
             height:0,
             weight:0,
