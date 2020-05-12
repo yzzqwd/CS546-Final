@@ -8,6 +8,7 @@ module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
 		const usersCollection = await users();
+		id = ObjectID(id)
 		const user = await usersCollection.findOne({ _id: id });
 		if (user === null) throw 'No user with that id';
 		return user;

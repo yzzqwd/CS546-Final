@@ -18,8 +18,15 @@ router.get('/', async (req, res) => {
     }
 
     res.render('health', {
-        user: user,
-        health: health
+        //user: user,
+        //health: health
+        username: user.username,
+        age: user.age,
+        height: health.height,
+        weight: health.weight,
+        mc: health.medicalConditions,
+        BMI: health.BMI,
+        BF: health.BF
     });
 });
 
@@ -43,7 +50,6 @@ router.patch('/updateUser', async (req, res) => {
     let age = input['age'];
     let password = input['password'];
     
-
     if (!firstname && !lastname && !email && !gender && !city && ! state && !age && !password) {
         res.render('signup', {
             blank: true
@@ -100,6 +106,7 @@ router.patch('/update', async (req, res) => {
     
 
     if (!weight && !height && !mc && !BMI && !BF) {
+        console.log("1")
         res.render('addhealth', {
             blank: true
         });
@@ -107,7 +114,9 @@ router.patch('/update', async (req, res) => {
     }
 
     try {
+        console.log("1")
         const oldHealth = await healthData.get(userId);
+        console.log("2")
         if (!weight) {
             weight = oldHealth.weight;
         }
@@ -123,10 +132,13 @@ router.patch('/update', async (req, res) => {
         if (!BF) {
             BF = oldHealth.BF;
         }
+        console.log("3")
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
+        console.log("4")
         res.redirect('/health');
     } catch (e) {
         console.log(e);
+        //console.log("2")
         res.render('addhealth');
     }
 });
