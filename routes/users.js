@@ -21,6 +21,11 @@ router.get('/adminlogin', async (req, res) => {
     }
 });
 
+router.get('/logout', async (req, res) => {
+    req.session.destroy();
+    res.render('logout');
+});
+
 router.post('/login', async (req, res) => {
     const input = req.body;
     const username = input['username'];
@@ -69,9 +74,5 @@ router.post('/adminlogin', async (req, res) => {
     }
 })
 
-router.get('/logout', async (req, res) => {
-    req.session.destroy();
-    res.render('logout');
-});
 
 module.exports = router;
