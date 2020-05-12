@@ -1,10 +1,13 @@
 const mongoCollections = require('../config/mongoCollections');
 const exercise = mongoCollections.exercise;
 const uuid = require('uuid');
+const ObjectID = require('mongodb').ObjectID
+
 module.exports = {
     async get(userId) {
 		if (!userId) throw 'You must provide an id to search for';
-		const exerciseCollection = await exercise();
+        const exerciseCollection = await exercise();
+        userId = ObjectID(userId)
 		const e = await exerciseCollection.findOne({ userId: userId });
 		if (e === null) throw 'No exercise with this user';
 		return e;
@@ -45,7 +48,8 @@ module.exports = {
         const exerciseCollection = await exercise();
         const e = await this.get(userId);
         e.outdoors.push(outdoors);
-		let newE = {
+        userId = ObjectID(userId)
+        let newE = {
             userId:userId,
             outdoors:e.outdoors,
             indoors:e.indoors,
@@ -61,15 +65,16 @@ module.exports = {
         const exerciseCollection = await exercise();
         const e = await this.get(userId);
         e.indoors.push(indoors);
+        userId = ObjectID(userId)
 		let newE = {
             userId:userId,
             outdoors:e.outdoors,
             indoors:e.indoors,
             others:e.others
         };
-		const updatedInfo = await exerciseCollection.updateOne({userId:userId},{$set:newE});
-		if (updatedInfo.modifiedCount === 0) throw 'Could not update indoors';
-		return await this.get(userId);
+        const updatedInfo = await exerciseCollection.updateOne({userId:userId},{$set:newE});
+        if (updatedInfo.modifiedCount === 0) throw 'Could not update indoors';
+        return await this.get(userId);
     },
     async addOthers(userId,others) {
 		if (!userId) throw 'You must provide an userId';
@@ -77,6 +82,7 @@ module.exports = {
         const exerciseCollection = await exercise();
         const e = await this.get(userId);
         e.others.push(others);
+        userId = ObjectID(userId)
 		let newE = {
             userId:userId,
             outdoors:e.outdoors,

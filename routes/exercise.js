@@ -38,11 +38,12 @@ router.patch('/add', async (req, res) => {
     try {
         if (type == 'Indoor') {
             await exerciseData.addIndoors(userId, sport);
-        } else if (tpye == 'Outdoor') {
+        } else if (type == 'Outdoor') {
             await exerciseData.addOutdoors(userId, sport);
         } else {
             await exerciseData.addOthers(userId, sport);
         }
+        res.render('exercise')
     } catch (e) {
         res.render('addexercise');
     }

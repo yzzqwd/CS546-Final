@@ -114,9 +114,7 @@ router.patch('/update', async (req, res) => {
     }
 
     try {
-        console.log("1")
         const oldHealth = await healthData.get(userId);
-        console.log("2")
         if (!weight) {
             weight = oldHealth.weight;
         }
@@ -132,13 +130,10 @@ router.patch('/update', async (req, res) => {
         if (!BF) {
             BF = oldHealth.BF;
         }
-        console.log("3")
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
-        console.log("4")
         res.redirect('/health');
     } catch (e) {
         console.log(e);
-        //console.log("2")
         res.render('addhealth');
     }
 });

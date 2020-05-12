@@ -75,6 +75,5 @@ module.exports = {
 		const updatedInfo = await healthCollection.updateOne({userId:userId},{$set:newHealth});
 		if (updatedInfo.modifiedCount === 0) throw 'Could not update health status';
 		return await this.get(userId);
-		return
 	}
 };
