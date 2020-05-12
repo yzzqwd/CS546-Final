@@ -32,16 +32,17 @@ router.get('/updateUser', async (req, res) => {
 });
 
 router.patch('/updateUser', async (req, res) => {
-    const input = req.body;
-    const firstname = input['firstname'];
-    const lastname = input['lastname'];
-    const email = input['email'];
-    const gender = input['gender'];
-    const city = input['city'];
-    const state = input['state'];
-    const age = input['age'];
-    const password = input['password'];
     const userId = req.session.user.userId;
+    const input = req.body;
+    let firstname = input['firstname'];
+    let lastname = input['lastname'];
+    let email = input['email'];
+    let gender = input['gender'];
+    let city = input['city'];
+    let state = input['state'];
+    let age = input['age'];
+    let password = input['password'];
+    
 
     if (!firstname && !lastname && !email && !gender && !city && ! state && !age && !password) {
         res.render('signup', {
@@ -89,13 +90,14 @@ router.patch('/updateUser', async (req, res) => {
 });
 
 router.patch('/update', async (req, res) => {
-    const input = req.body;
-    const weight = input['weight'];
-    const height = input['height'];
-    const mc = input['mc'];
-    const BMI = input['BMI'];
-    const BF = input['BF'];
     const userId = req.session.user.userId;
+    const input = req.body;
+    let weight = input['weight'];
+    let height = input['height'];
+    let mc = input['mc'];
+    let BMI = input['BMI'];
+    let BF = input['BF'];
+    
 
     if (!weight && !height && !mc && !BMI && !BF) {
         res.render('addhealth', {
@@ -113,7 +115,7 @@ router.patch('/update', async (req, res) => {
             height = oldHealth.height;
         }
         if (!mc) {
-            mc = oldHealth.mc;
+            mc = oldHealth.medicalConditions;
         }
         if (!BMI) {
             BMI = oldHealth.BMI;
@@ -124,6 +126,7 @@ router.patch('/update', async (req, res) => {
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
         res.redirect('/health');
     } catch (e) {
+        console.log(e);
         res.render('addhealth');
     }
 });
