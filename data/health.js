@@ -1,5 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const health = mongoCollections.health;
+const uuid = require('uuid/v4');
 module.exports = {
     async get(userId) {
 		if (!userId) throw 'You must provide an id to search for';
@@ -19,6 +20,7 @@ module.exports = {
 		if (!userId) throw 'You must provide an userId';
 		const healthCollection = await health();
 		let newHealth = {
+			_id: uuid(),
             userId:userId,
             height:0,
             weight:0,

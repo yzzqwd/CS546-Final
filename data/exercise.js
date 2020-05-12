@@ -1,5 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const exercise = mongoCollections.exercise;
+const uuid = require('uuid/v4');
 module.exports = {
     async get(userId) {
 		if (!userId) throw 'You must provide an id to search for';
@@ -13,6 +14,7 @@ module.exports = {
         if (!userId) throw 'You must provide an userId';
 		const exerciseCollection = await exercise();
 		let newExercise = {
+            _id: uuid(),
             userId:userId,
             outdoors:[],
             indoors:[],

@@ -1,6 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const posts = mongoCollections.posts;
 const users = require('./users');
+const uuid = require('uuid/v4');
 module.exports = {
     async create(userId,img, caption, time){
         if (!userId) throw 'You must provide userId for post.';
@@ -9,6 +10,7 @@ module.exports = {
         if (!time) throw 'You must provide a time.';
         const postCollection = await posts();
         let newP = {
+            _id: uuid(),
             userId:userId,
             img:img,
             caption:caption,

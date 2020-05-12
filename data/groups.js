@@ -1,5 +1,6 @@
 const mongoCollections = require('../config/mongoCollections');
 const groups = mongoCollections.groups;
+const uuid = require('uuid/v4');
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
@@ -20,6 +21,7 @@ module.exports = {
         if (!announcements) throw 'You must provide announcements';
 		const groupsCollection = await groups();
 		let newG = {
+			_id: uuid(),
             name:name,
             members:[],
             ltg:ltg,

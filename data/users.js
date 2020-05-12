@@ -2,6 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = require('./groups');
 const ObjectID = require('mongodb').ObjectID
+const uuid = require('uuid/v4');
 
 module.exports = {
     async get(id) {
@@ -36,6 +37,7 @@ module.exports = {
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
+			_id: uuid(),
 			firstName: firstName,
             lastName: lastName,
             username:username,
@@ -99,14 +101,14 @@ module.exports = {
 		console.log(id)
 		id = ObjectID(id)
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:{id:postId}}});
+		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:postId}});
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add post to user';
 		return await this.get(id);
 	},
 
 	async removePostFromUser(id,postId) {
 		const usersCollection = await users();
-		const updateInfo = await usersCollection.updateOne({_id:id},{$pull:{posts:{id:postId}}});
+		const updateInfo = await usersCollection.updateOne({_id:id},{$pull:{posts:postId}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove post from user';
 		return await this.get(id);
 	},
