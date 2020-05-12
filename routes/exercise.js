@@ -14,7 +14,9 @@ router.get('/', async (req, res) => {
     }
 
     res.render('exercise', {
-        exercise: exercise
+        indoors: exercise.indoors,
+        outdoors: exercise.outdoors,
+        other: exercise.other
     });
 });
 
