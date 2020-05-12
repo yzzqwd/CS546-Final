@@ -1,7 +1,7 @@
 //remove post, remove user, get user, get post
 const mongoCollections = require('../config/mongoCollections');
 const admin = mongoCollections.admin;
-const uuid = require('uuid/v4');
+const uuid = require('uuid');
 module.exports = {
     async getByUserName(username) {
 		if (!username) throw 'You must provide name to search for';

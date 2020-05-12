@@ -2,7 +2,7 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = require('./groups');
 const ObjectID = require('mongodb').ObjectID
-const uuid = require('uuid/v4');
+const uuid = require('uuid');
 
 module.exports = {
     async get(id) {
