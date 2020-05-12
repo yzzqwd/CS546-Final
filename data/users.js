@@ -1,6 +1,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = require('./groups');
+const uuid = require('uuid/v4');
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
@@ -34,6 +35,7 @@ module.exports = {
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
+			_id: uuid(),
 			firstName: firstName,
             lastName: lastName,
             username:username,
