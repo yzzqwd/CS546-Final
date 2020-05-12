@@ -2,11 +2,24 @@
 const mongoCollections = require('../config/mongoCollections');
 const admin = mongoCollections.admin;
 module.exports = {
-    async get(id) {
-		if (!id) throw 'You must provide an id to search for';
+    async getByUserName(username) {
+		if (!username) throw 'You must provide name to search for';
 		const adminCollection = await admin();
-		const a = await adminCollection.findOne({ _id: id });
-		if (a === null) throw 'No administrator with that id';
+		const a = await adminCollection.findOne({ username: username });
+		if (a === null) throw 'No administrator with that username';
 		return a;
-	}
+    },
+    async create(username,hashedPassword) {
+        if (!username) throw 'You must provide username';
+        const adminCollection = await admin();
+        let newA = {
+            username:username,
+            hashedPassword:hashedPassword
+        }
+        const insertInfo = await adminCollection.insertOne(newA);
+		if (insertInfo.insertedCount === 0) throw 'Could not add administrator';
+		const a = await this.getByUsername(username);
+		return a;
+    }
+    
 }

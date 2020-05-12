@@ -80,3 +80,7 @@ h2 {
     text-align: center;
     color: brown;
 }
+
+.hidden {
+    display: none;
+}

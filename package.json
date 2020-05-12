@@ -4,6 +4,7 @@
   "description": "An application that allows users to track fitness data",
   "main": "app.js",
   "scripts": {
+    "seed": "node ./tasks/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
@@ -17,6 +18,7 @@
     "handlebars": "^4.7.6",
     "mongodb": "^3.5.7",
     "node-uuid": "^1.4.8",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "xss": "^1.0.6"
   }
 }

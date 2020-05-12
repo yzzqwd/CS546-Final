@@ -54,6 +54,14 @@ app.use('/groups', async (req, res, next) => {
     }
 });
 
+app.use('/admin', async (req, res, next) => {
+    if (!req.session.admin) {
+        return res.redirect('/adminlogin');
+    } else {
+        next();
+    }
+});
+
 configRoutes(app);
 app.listen(3000, () => {
 	console.log("We've now got a server!");

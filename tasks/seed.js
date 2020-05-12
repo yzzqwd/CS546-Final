@@ -6,10 +6,7 @@ const admin = data.admin
 async function main() {
 	const db = await dbConnection();
 	await db.dropDatabase();
-
-    const patrick = await admin.create('Patrick', 'Hill', 'phill546', 'Male', 'phill@stevens.edu', 'Hoboken', 'New Jersey', '30', 'finalproject');
-    
-    const john = await users.create('John', 'Smith','johnsmith1234', 'Male', 'jsmith@gmail.com', 'Albany', 'New York', '20', 'hiimauser');
+    const john = await admin.create('johnsmith1234',hashedPassword);
 	const id = john._id;
     
     //await posts.create(id, img, caption, time);

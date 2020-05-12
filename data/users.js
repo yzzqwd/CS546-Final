@@ -30,11 +30,11 @@ module.exports = {
         if (!email) throw 'You must provide email';
         if (!city) throw 'You must provide city';
         if (!state) throw 'You must provide state';
-		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
+		if (!age) throw 'You must provide a valid age';
 		if (!hashedPassword) throw 'You must provide hash';
 		const usersCollection = await users();
 		let newUser = {
-			firstName: fristName,
+			firstName: firstName,
             lastName: lastName,
             username:username,
             gender:gender,
@@ -64,7 +64,7 @@ module.exports = {
 		await groups.removeUserFromGroup(user.group_id,id);
 		return user;
 	},
-	async updateUser(userId,firstName, lastName, username,gender,email,city,state,age,posts,group_id) {
+	async updateUser(userId,firstName, lastName, username,gender,email,city,state,age,hashedPassword,posts,group_id) {
 		if (!userId) throw 'You must provide userId';
 		if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
@@ -85,8 +85,8 @@ module.exports = {
             city:city,
             state:state,
 			age:age,
-			posts:posts,
 			hashedPassword:hashedPassword,
+			posts:posts,
 			group_id:group_id
 		};
 		const updatedInfo = await usersCollection.updateOne({_id:userId},{$set:newUser});
