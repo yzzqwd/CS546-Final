@@ -1,6 +1,8 @@
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const groups = require('./groups');
+const ObjectID = require('mongodb').ObjectID
+
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
@@ -94,6 +96,8 @@ module.exports = {
 		return await this.get(userId);
 	},
 	async addPostToUser(id,postId) {
+		console.log(id)
+		id = ObjectID(id)
 		const usersCollection = await users();
 		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:{id:postId}}});
 		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not add post to user';

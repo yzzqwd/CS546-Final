@@ -97,7 +97,7 @@ router.patch('/update', async (req, res) => {
     const BF = input['BF'];
     const userId = req.session.user.userId;
 
-    if (!health && !height && !mc && !BMI && !BF) {
+    if (!weight && !height && !mc && !BMI && !BF) {
         res.render('addhealth', {
             blank: true
         });
