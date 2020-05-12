@@ -13,4 +13,10 @@
     <input name="sport" type="text" placeholder="description of exercise">
 
     <button type="submit">Submit Exercise</button>
+
+    {{#if miss}}
+    <p>
+        You must choose a type and enter a description
+    </p>
+    {{/if}}
 </form>

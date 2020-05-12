@@ -9,4 +9,10 @@
     <input name="BMI" type="text" align="center" placeholder="BMI">
     <input name="BF" type="text" align="center" placeholder="bf%">
     <button type="submit">Submit Health Data</button>
+
+    {{#if blank}}
+    <p>
+        At least one field must be changed
+    </p>
+    {{/if}}
 </form>

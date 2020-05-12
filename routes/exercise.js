@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     res.render('exercise', {
         indoors: exercise.indoors,
         outdoors: exercise.outdoors,
-        other: exercise.other
+        other: exercise.others
     });
 });
 
@@ -45,7 +45,7 @@ router.patch('/add', async (req, res) => {
         } else {
             await exerciseData.addOthers(userId, sport);
         }
-        res.render('exercise')
+        res.redirect('/exercise')
     } catch (e) {
         res.render('addexercise');
     }
