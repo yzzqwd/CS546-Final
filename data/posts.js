@@ -13,7 +13,7 @@ module.exports = {
             userId:userId,
             img:img,
             caption:caption,
-            time:time,
+            time:time
         };
         const insertInfo = await postCollection.insertOne(newP);
         if (insertInfo.insertedCount === 0) throw 'Could not add post';
@@ -42,7 +42,6 @@ module.exports = {
             img:img,
             caption:caption,
             time:time,
-            _id: id
         };
 		const updatedInfo = await postCollection.updateOne({ _id: id}, { $set: newP});
 		if (updatedInfo.modifiedCount === 0) {
