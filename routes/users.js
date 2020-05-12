@@ -28,8 +28,8 @@ router.get('/logout', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const input = req.body;
-    const username = input['username'];
-    const password = input['password'];
+    const username = input['un '];
+    const password = input['pass'];
     let result = false;
     let user = {};
     

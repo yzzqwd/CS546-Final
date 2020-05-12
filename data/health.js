@@ -32,7 +32,6 @@ module.exports = {
 		if (insertInfo.insertedCount === 0) throw 'Could not add health status';
 		//const newId = insertInfo.insertedId;
 		const h = await this.get(userId);
-		console.log("9")
 		return h;
     },
     
