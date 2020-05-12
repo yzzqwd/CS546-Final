@@ -62,6 +62,13 @@ app.use('/admin', async (req, res, next) => {
     }
 });
 
+app.use(async (req, res, next) => {
+	if (req.body._method) {
+		req.method = req.body._method;
+	}
+	next();
+})
+
 configRoutes(app);
 app.listen(3000, () => {
 	console.log("We've now got a server!");
