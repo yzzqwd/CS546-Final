@@ -49,6 +49,10 @@
     font-size: 28px;
 }
 
+.navigate a li:hover {
+    font-size: 32px;
+}
+
 body {
     border: 4px solid #101010;
 }
@@ -88,4 +92,9 @@ h2 {
 img {
     max-width: 50%;
     max-height: 50%;
+}
+
+
+.main {
+    margin: 0 auto;
 }
