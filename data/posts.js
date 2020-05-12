@@ -1,9 +1,8 @@
 const mongoCollections = require('../config/mongoCollections');
 const posts = mongoCollections.posts;
-const users = require('./users')
-
+const users = require('./users');
 module.exports = {
-    async create(userId, img, caption, time){
+    async create(userId,img, caption, time){
         if (!userId) throw 'You must provide userId for post.';
         if (!img) throw 'You must provide a img';
         if (!caption) throw 'You must provide a caption.';
@@ -17,9 +16,9 @@ module.exports = {
         };
         const insertInfo = await postCollection.insertOne(newP);
         if (insertInfo.insertedCount === 0) throw 'Could not add post';
-        const newID = insertInfo.insertedID;
-        await users.addPostToUser(userId,newID);
-		return await this.get(newID);
+        const newId = insertInfo.insertedId;
+        await users.addPostToUser(userId,newId);
+		return await this.get(newId);
     },
 
     async get(id) {
