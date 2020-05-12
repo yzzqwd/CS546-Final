@@ -47,6 +47,16 @@ router.post('/add', async (req, res) => {
     } catch (e) {
         res.render('newpost');
     }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        await postData.removePost(req.params.id);
+    } catch (e) {
+        console.log(e);
+    }
+
+    res.redirect('/posts');
 })
 
 module.exports = router; 
