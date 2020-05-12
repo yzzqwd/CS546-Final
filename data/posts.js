@@ -3,7 +3,7 @@ const posts = mongoCollections.posts;
 const users = require('./users')
 const uuid = require("node-uuid");
 module.exports = {
-    async create(userId,img, caption, time){
+    async create(userId, img, caption, time){
         if (!userId) throw 'You must provide userId for post.';
         if (!img) throw 'You must provide a img';
         if (!caption) throw 'You must provide a caption.';
