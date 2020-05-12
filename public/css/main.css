@@ -98,3 +98,10 @@ img {
 .main {
     margin: 0 auto;
 }
+
+.error {
+    background-color: red;
+    color: white;
+    font-size: 10pt;
+    border-style: groove
+}
