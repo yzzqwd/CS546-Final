@@ -1,0 +1,22 @@
+    <h2>Groups</h2>
+
+    {{#each groupList}}
+    <div>
+    <h3>{{name}}</h3>
+    <p>{{_id}}</p>
+    </div>
+    {{/each}}
+
+<h2>Join a Group</h2>
+<form action="/group/showAllGroups" method="POST">
+
+    <input type="hidden" name="_method" value="PATCH">
+
+    <label for="group_id">Enter the id of the group you want to join</label>
+
+    <input name="group_id" type="text" align="center" placeholder="id">
+    
+
+    <button type="submit">Join</button>
+
+</form>
