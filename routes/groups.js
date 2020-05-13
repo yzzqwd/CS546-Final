@@ -66,7 +66,7 @@ router.patch('/showAllGroups', async (req, res) => {
             await groupData.removeUserFromGroup(oldGroup_id, userId);
         }
         await groupData.addUserToGroup(group_id, userId);
-        await userData.updateUser(userId, user.firstName, user.lastName, user.username, user.gender, user.email, user.city, user.state, user.age, user.posts, group_id);
+        await userData.updateUser(userId, user.firstName, user.lastName, user.username, user.gender, user.email, user.city, user.state, user.age, user.hashedPassword, user.posts, group_id);
         res.redirect('/groups');
     } catch (e) {
         res.render('allGroups');
