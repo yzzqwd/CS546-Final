@@ -6,7 +6,7 @@ const uuid = require('uuid');
 
 module.exports = {
     async get(id) {
-		if (!id) throw 'You must provide an id to search for';
+		if (!id) throw 'You must provide an id to search for an user';
 		const usersCollection = await users();
 		id = ObjectID(id)
 		const user = await usersCollection.findOne({ _id: id });
@@ -14,14 +14,14 @@ module.exports = {
 		return user;
 	},
 	async getByUsername(username) {
-		if (!username) throw 'You must provide username to search for';
+		if (!username) throw 'You must provide username to search for an user';
 		const usersCollection = await users();
 		const user = await usersCollection.findOne({ username: username });
 		if (user === null) throw 'No user with that username';
 		return user;
 	},
 	async getByEmail(e) {
-		if (!e) throw 'You must provide username to search for';
+		if (!e) throw 'You must provide username to search for an user';
 		const usersCollection = await users();
 		const user = await usersCollection.findOne({ email: e });
 		if (user === null) throw 'No user with that eamil';
@@ -66,7 +66,7 @@ module.exports = {
     },
     
 	async remove(id) {
-		if (!id) throw 'You must provide an id to search for';
+		if (!id) throw 'You must provide an id to remove user';
 		const usersCollection = await users();
 		id = ObjectID(id)
         const user = await this.get(id);
