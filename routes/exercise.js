@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const exerciseData = data.exercise;
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     const userId = req.session.user.userId;
@@ -25,9 +26,8 @@ router.get('/add', async (req, res) => {
 });
 
 router.patch('/add', async (req, res) => {
-    const input = req.body;
-    const type = input['type'];
-    const sport = input['sport'];
+    const type = xss(req.body['type']);
+    const sport = xss(req.body['sport']);
     const userId = req.session.user.userId;
 
     if (!type || !sport) {

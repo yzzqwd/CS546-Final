@@ -6,17 +6,18 @@ const postData = data.posts;
 const healthData = data.health;
 const exerciseData = data.exercise;
 const groupData = data.groups;
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     let users = [];
 
     try {
         users = await userData.getAll();
-        /*for (let x of users) {
+        for (let x of users) {
             for (let i = 0; i < x.posts.length; i++) {
                 x.posts[i] = await postData.get(x.post[i]);
             }
-        }*/
+        }
     } catch (e) {
         console.log(e);
     }
@@ -31,10 +32,9 @@ router.get('/createGroup', async (req, res) => {
 })
 
 router.post('/createGroup', async (req, res) => {
-    const input = req.body;
-    const name = input['name'];
-    const ltg = input['ltg'];
-    const announcements = input['announcements'];
+    const name = xss(req.body['name']);
+    const ltg = xss(req.body['ltg']);
+    const announcements = xss(req.body['announcements']);
 
     if (!name || !ltg || !announcements) {
         res.render('newgroup', {

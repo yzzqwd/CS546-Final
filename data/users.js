@@ -116,6 +116,7 @@ module.exports = {
 	},
 
 	async removePostFromUser(id,postId) {
+		id = ObjectID(id)
 		const usersCollection = await users();
 		const updateInfo = await usersCollection.updateOne({_id:id},{$pull:{posts:postId}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove post from user';
