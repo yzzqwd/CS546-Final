@@ -1,23 +1,27 @@
 <body>
     <div class="main">
-        <h2 class="sign" align="center">Sign in</h2>
+        <h2 class="sign" align="center">Welcome!</h2>
+        <h3 class="subtitle" align="center">Please sign in below</h3>
+        <br>
         <form class="form1" action="/login" method="POST">
             
               <label for="un ">Username</label> <br>
               <input name="un " type="text" align="center" placeholder="Enter Username" required>
               <br>
+              <br>
               <label for="pass">Password</label> <br>
               <input name="pass" type="password" align="center" placeholder=" Enter Password">
               <br>
-
               {{#if error}}
                 <p class="error">
                 Incorrect username or password
                 </p>
               {{/if}} 
-
-              <button type="submit" align="center">Sign in</button>
-
+              <br>
+              <br>
+              <button class="bttn" type="submit" align="center">Sign in</button>
+            <br>
+            <br>
             <p class="signup" align="center"><a href="/signup">No Account?</p>
             <p><a href="/adminlogin">Administrator Login</a></p>    
 
