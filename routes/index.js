@@ -4,6 +4,7 @@ const signupRoutes = require('./signup');
 const healthRoutes = require('./health');
 const exerciseRoutes = require('./exercise');
 const groupRoutes = require('./groups');
+const adminRoutes = require('./admin');
 
 const constructorMethod = (app) => {
     app.use('/', userRoutes);
@@ -12,6 +13,7 @@ const constructorMethod = (app) => {
     app.use('/health', healthRoutes);
     app.use('/exercise', exerciseRoutes);
     app.use('/group', groupRoutes);
+    app.use('/admin', adminRoutes);
 
     app.use('*', (req, res) => {
         res.sendStatus(404);

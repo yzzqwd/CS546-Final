@@ -69,7 +69,7 @@ router.post('/adminlogin', async (req, res) => {
         res.redirect('/admin');
     } else {
         res.render('adminlogin', {
-            errot: true
+            error: true
         });
     }
 });

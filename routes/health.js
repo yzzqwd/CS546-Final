@@ -18,8 +18,6 @@ router.get('/', async (req, res) => {
     }
 
     res.render('health', {
-        //user: user,
-        //health: health
         username: user.username,
         age: user.age,
         height: health.height,
@@ -106,7 +104,6 @@ router.patch('/update', async (req, res) => {
     
 
     if (!weight && !height && !mc && !BMI && !BF) {
-        console.log("1")
         res.render('addhealth', {
             blank: true
         });
@@ -133,7 +130,6 @@ router.patch('/update', async (req, res) => {
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
         res.redirect('/health');
     } catch (e) {
-        console.log(e);
         res.render('addhealth');
     }
 });
