@@ -39,15 +39,14 @@ router.get('/updateUser', async (req, res) => {
 
 router.patch('/updateUser', async (req, res) => {
     const userId = req.session.user.userId;
-    const input = xss(req.body);
-    let firstname = input['firstname'];
-    let lastname = input['lastname'];
-    let email = input['email'];
-    let gender = input['gender'];
-    let city = input['city'];
-    let state = input['state'];
-    let age = input['age'];
-    let password = input['password'];
+    let firstname = xss(req.body['firstname']);
+    let lastname = xss(req.body['lastname']);
+    let email = xss(req.body['email']);
+    let gender = xss(req.body['gender']);
+    let city = xss(req.body['city']);
+    let state = xss(req.body['state']);
+    let age = xss(req.body['age']);
+    let password = xss(req.body['password']);
     
     if (!firstname && !lastname && !email && !gender && !city && ! state && !age && !password) {
         res.render('signup', {
@@ -97,11 +96,11 @@ router.patch('/updateUser', async (req, res) => {
 router.patch('/update', async (req, res) => {
     const userId = req.session.user.userId;
     const input = xss(req.body);
-    let weight = input['weight'];
-    let height = input['height'];
-    let mc = input['mc'];
-    let BMI = input['BMI'];
-    let BF = input['BF'];
+    let weight = xss(req.body['weight']);
+    let height = xss(req.body['height']);
+    let mc = xss(req.body['mc']);
+    let BMI = xss(req.body['BMI']);
+    let BF = xss(req.body['BF']);
     
 
     if (!weight && !height && !mc && !BMI && !BF) {

@@ -28,9 +28,8 @@ router.get('/logout', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const input = xss(req.body);
-    const username = input['un '];
-    const password = input['pass'];
+    const username = xss(req.body['un ']);
+    const password = xss(req.body['pass']);
     let result = false;
     let user = {};
     
@@ -52,9 +51,8 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/adminlogin', async (req, res) => {
-    const input = xss(req.body);
-    const adminname = input['adminname'];
-    const password = input['password'];
+    const adminname = xss(req.body['adminname']);
+    const password = xss(req.body['password']);
     let result = false;
     let admin = {};
 

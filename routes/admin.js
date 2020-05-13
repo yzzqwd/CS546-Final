@@ -32,10 +32,9 @@ router.get('/createGroup', async (req, res) => {
 })
 
 router.post('/createGroup', async (req, res) => {
-    const input = xss(req.body);
-    const name = input['name'];
-    const ltg = input['ltg'];
-    const announcements = input['announcements'];
+    const name = xss(req.body['name']);
+    const ltg = xss(req.body['ltg']);
+    const announcements = xss(req.body['announcements']);
 
     if (!name || !ltg || !announcements) {
         res.render('newgroup', {

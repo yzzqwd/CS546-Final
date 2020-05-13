@@ -54,8 +54,7 @@ router.get('/showAllGroups', async (req, res) => {
 });
 
 router.patch('/showAllGroups', async (req, res) => {
-    const input = xss(req.body);
-    let group_id = input['group_id'];
+    let group_id = xss(req.body['group_id']);
     const userId = req.session.user.userId;
     let user = {};
     

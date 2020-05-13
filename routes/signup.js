@@ -12,17 +12,16 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const input = xss(req.body);
-    const firstname = input['firstname'];
-    const lastname = input['lastname'];
-    const email = input['email'];
-    const gender = input['gender'];
-    const city = input['city'];
-    const state = input['state'];
-    const age = input['age'];
-    const username = input['un '];
-    const password = input['pass'];
-    const comfirm = input['pass2'];
+    const firstname = xss(req.body['firstname']);
+    const lastname = xss(req.body['lastname']);
+    const email = xss(req.body['email']);
+    const gender = xss(req.body['gender']);
+    const city = xss(req.body['city']);
+    const state = xss(req.body['state']);
+    const age = xss(req.body['age']);
+    const username = xss(req.body['un ']);
+    const password = xss(req.body['pass']);
+    const comfirm = xss(req.body['pass2']);
     
     let hashedPassword;
     let usedUsername = false;

@@ -26,9 +26,8 @@ router.get('/add', async (req, res) => {
 });
 
 router.patch('/add', async (req, res) => {
-    const input = xss(req.body);
-    const type = input['type'];
-    const sport = input['sport'];
+    const type = xss(req.body['type']);
+    const sport = xss(req.body['sport']);
     const userId = req.session.user.userId;
 
     if (!type || !sport) {
