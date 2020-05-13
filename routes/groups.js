@@ -54,12 +54,13 @@ router.get('/showAllGroups', async (req, res) => {
 
 router.patch('/showAllGroups', async (req, res) => {
     const input = req.body;
-    const group_id = input['group_id'];
+    let group_id = input['group_id'];
     const userId = req.session.user.userId;
     let user = {};
     
     try {
         user = await userData.get(userId);
+        console.log(user)
         const oldGroup_id = user.group_id;
         if (oldGroup_id != '') {
             await groupData.removeUserFromGroup(oldGroup_id, userId);

@@ -103,12 +103,12 @@ module.exports = {
 			posts:posts,
 			group_id:group_id
 		};
+		userId = ObjectID(userId)
 		const updatedInfo = await usersCollection.updateOne({_id:userId},{$set:newUser});
 		if (updatedInfo.modifiedCount === 0) throw 'Could not update user';
 		return await this.get(userId);
 	},
 	async addPostToUser(id,postId) {
-		console.log(id)
 		id = ObjectID(id)
 		const usersCollection = await users();
 		const updateInfo = await usersCollection.updateOne({_id:id},{$addToSet:{posts:postId}});
