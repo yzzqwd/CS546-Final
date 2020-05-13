@@ -2,6 +2,8 @@ const dbConnection = require('../config/mongoConnection');
 const data = require('../data/');
 const users = data.users;
 const admin = data.admin;
+const health = data.health
+const exercise = data.exercise
 const bcrypt = require('bcryptjs');
 
 const main = async () => {
@@ -14,7 +16,10 @@ const main = async () => {
 	const adHash = await bcrypt.hash(adPassword, 15);
 	const userHash = await bcrypt.hash(userPassword, 15);
 	await admin.create(adName, adHash);
-	await users.create("John", "Smith", "jsmith1234", "male" , "jsmith@gmail.com", "Hoboken" , "NJ" , "30" , userHash);
+	let john = await users.create("John", "Smith", "jsmith1234", "male" , "jsmith@gmail.com", "Hoboken" , "NJ" , "30" , userHash);
+	let userID = john._id
+	await health.create(userID)
+	await exercise.create(userID)
     
 	console.log('Done!');
 	await db.serverConfig.close();
