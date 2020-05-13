@@ -12,8 +12,8 @@
         </ul>
     </div>
 </div>
-{{#if group}}
 <div align="center" class="body">
+    {{#if group}}
     <h2 class="head">Group Details</h2>
     <p>Username: {{username}}</p>
     <p>Members: {{members}}</p>
@@ -28,11 +28,11 @@
     <br>
     <p>Announcements:</p>
     <ul align="center" id="list"></ul>
-</div>
 <script src="public/js/form.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {{/if}}
 
 {{#if noGroup}}
-<h2>You are not a part of a group</h2>
+<h2 class="head">You are not a part of a group</h2>
 {{/if}}
+</div>
