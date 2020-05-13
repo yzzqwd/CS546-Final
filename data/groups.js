@@ -5,7 +5,7 @@ const ObjectID = require('mongodb').ObjectID
 
 module.exports = {
     async get(id) {
-		if (!id) throw 'You must provide an id to search for';
+		if (!id) throw 'You must provide an id to search for a group';
 		const groupsCollection = await groups();
 		id = ObjectID(id)
 		const group = await groupsCollection.findOne({ _id: id });
