@@ -43,6 +43,10 @@
                 <p class="error">The username or email is already taken</p>
             {{/if}}
 
+            {{#if notComfirmed}}
+                <p class="error">You must comfirm your password correctly</p>
+            {{/if}}
+
             <button name="submit" align="center">Sign up</button>
         </form>
             <p class="signup" align="center"><a href="/">Already have an account? </a></p>         
