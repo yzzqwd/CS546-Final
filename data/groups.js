@@ -24,7 +24,6 @@ module.exports = {
         if (!announcements) throw 'You must provide announcements';
 		const groupsCollection = await groups();
 		let newG = {
-			//_id: uuid(),
             name:name,
             members:[],
             ltg:ltg,
@@ -47,7 +46,6 @@ module.exports = {
 		}
 		return group;
 	},
-	//group and user are complicated 
 	async addUserToGroup(id,userId) {
 		const groupsCollection = await groups();
 		id = ObjectID(id)
