@@ -19,11 +19,11 @@
 }
 
 .logo h1 {
-    color: rgb(240, 13, 13);
+    color: white;
     height: 100%;
     display: table-cell;
     vertical-align: middle;
-    font-family: fantasy;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
 }
 
@@ -44,8 +44,8 @@
     display: table-cell;
     vertical-align: middle;
     height: 100%;
-    color: rgb(235, 13, 13);
-    font-family: fantasy;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
 }
 
@@ -54,7 +54,7 @@
 }
 
 body {
-    border: 4px solid #101010;
+    background-color: lightblue;
 }
 
 input {
@@ -93,7 +93,6 @@ img {
     max-height: 50%;
 }
 
-
 .main {
     margin: 0 auto;
     text-align: center;
@@ -120,4 +119,18 @@ html {
 .subtitle {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13pt;
+}
+.body {
+    background-color: lightblue;
+    text-align: center;
+    align-items: center;
+}
+
+.newpost {
+    padding: 150px;
+}
+
+.head {
+    padding: 20px;
+    text-decoration: underline;
 }
