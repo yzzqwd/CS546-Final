@@ -1,19 +1,20 @@
-{{#each users}}
-<p>{{username}}</p>
+<div align="center" class="body">
+    {{#each users}}
+    <p>{{username}}</p>
 
-<button name="get-posts" id="get-posts">Show posts</button>
+    <button name="get-posts" id="get-posts">Show posts</button>
 
-<div id="user-posts" class="hidden">
-{{#each posts}}
-{{id}}
-<form action="/admin/posts/{{_id}}" method="DELETE">
-    <button name="deletep">Delete Post</button>
-</form>
-{{/each}}
+    <div id="user-posts" class="hidden">
+    {{#each posts}}
+    {{id}}
+    <form action="/admin/posts/{{_id}}" method="DELETE">
+        <button name="deletep">Delete Post</button>
+    </form>
+    {{/each}}
+    </div>
+
+    <form action="/admin/user/{{_id}}" method="DELETE">
+        <button name="deleteu">Delete User</button>
+    </form>
+    {{/each}}
 </div>
-
-<form action="/admin/user/{{_id}}" method="DELETE">
-    <button name="deleteu">Delete User</button>
-</form>
-{{/each}}
-
