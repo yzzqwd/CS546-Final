@@ -55,6 +55,13 @@ router.post('/', async (req, res) => {
         return;
     }
 
+    age = parseInt(age);
+    if (typeof(age) !== 'number'|| age < 0) {
+        res.render('signup', {
+            badAge: true
+        })
+    }
+
     if (password == comfirm) {
         hashedPassword = await bcrypt.hash(password, 15);
     } else {

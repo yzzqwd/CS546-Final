@@ -43,6 +43,10 @@
                 <p class="error">The username or email is already taken</p>
             {{/if}}
 
+            {{#if badAge}}
+                <p class="error">You must provide valid age</p>
+            {{/if}}
+
             {{#if notComfirmed}}
                 <p class="error">You must comfirm your password correctly</p>
             {{/if}}
