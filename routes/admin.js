@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     try {
         users = await userData.getAll();
         for (let x of users) {
-            for (i = 0; i < x.posts.length; i++) {
+            for (let i = 0; i < x.posts.length; i++) {
                 x.posts[i] = await postData.get(x.post[i]);
             }
         }
