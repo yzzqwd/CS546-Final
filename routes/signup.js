@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
     
     let hashedPassword;
     let usedUsername = false;
+    let usedEmail = false;
 
     if (!firstname || !lastname || !email || !gender || !city || !state || !age || !username || !password || !comfirm) {
         res.render('signup', {
@@ -37,12 +38,19 @@ router.post('/', async (req, res) => {
         await userData.getByUsername(username);
         usedUsername = true;
     } catch (e) {
-        console.log(e);
+        console.log('This username can be used!');
     }
 
-    if (usedUsername) {
+    try {
+        await userData.getByEmail(email);
+        usedEmail = true;
+    } catch (e) {
+        console.log('This email can be used!');
+    }
+
+    if (usedUsername || usedEmail) {
         res.render('signup', {
-            usedUsername: true
+            used: true
         });
         return;
     }
