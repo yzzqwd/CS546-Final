@@ -1,15 +1,15 @@
 <body>
     <div class="main">
-        <h2 class="sign" align="center">Create an Account</h2>
+        <h1 class="sign" align="center">Create an Account</h1>
         <form action="/signup" method="POST" class="form2">
             <label for="firstname">First Name</label> <br>
-            <input name="firstname" type="text" align="center" placeholder="Enter First Name"> <br>
+            <input name="firstname" id="firstname" type="text" align="center" placeholder="Enter First Name"> <br>
 
             <label for="lastname">Last Name</label> <br>
-            <input name="lastname" type="text" align="center" placeholder="Enter Last Name"> <br>
+            <input name="lastname" id="lastname" type="text" align="center" placeholder="Enter Last Name"> <br>
 
             <label for="email">Email Address</label> <br>
-            <input name="email" type="text" align="center" placeholder="Enter Email Address"> <br>
+            <input name="email" id="email" type="text" align="center" placeholder="Enter Email Address"> <br>
 
             <label for="gender">Gender</label> <br>
             <select id="gender" name="gender">
@@ -17,23 +17,23 @@
                 <option value="volvo">Female</option>
             </select> <br>
 
-            <label for="City">City</label> <br>
-            <input name="city" type="text" align="center" placeholder="Enter the city you live in"> <br>
+            <label for="city">City</label> <br>
+            <input name="city" id="city" type="text" align="center" placeholder="Enter the city you live in"> <br>
 
             <label for="state">State</label> <br>
-            <input name="state" type="text" align="center" placeholder="Enter the state you live in"> <br>
+            <input name="state" id="state" type="text" align="center" placeholder="Enter the state you live in"> <br>
 
             <label for="age">Age</label> <br>
-            <input name="age" type="text" align="center" placeholder="Enter your age"> <br>
+            <input name="age" id="age" type="text" align="center" placeholder="Enter your age"> <br>
 
             <label for="un ">Username</label> <br>
-            <input name="un " type="text" align="center" placeholder="Choose a username"> <br>
+            <input name="un " id="un " type="text" align="center" placeholder="Choose a username"> <br>
 
             <label for="pass">Password</label> <br>
-            <input name="pass" type="password" align="center" placeholder="Enter your password"> <br>
+            <input name="pass" id="pass" type="password" align="center" placeholder="Enter your password"> <br>
 
             <label for="pass2">Confirm Password</label> <br>
-            <input name="pass2" type="password" align="center" placeholder="Confirm Password"> <br>
+            <input name="pass2" id="pass2" type="password" align="center" placeholder="Confirm Password"> <br>
 
             {{#if miss}}
                 <p class="error">You must provide all information</p>
@@ -45,6 +45,6 @@
 
             <button name="submit" align="center">Sign up</button>
         </form>
-            <p class="signup" align="center"><a href="/">Already have an account?</p>         
+            <p class="signup" align="center"><a href="/">Already have an account? </a></p>         
     </div> 
 </body>

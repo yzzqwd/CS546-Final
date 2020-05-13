@@ -1,15 +1,15 @@
 <body>
     <div class="main">
-        <h2 class="sign" align="center">Administrator Sign in</h2>
+        <h1 class="sign" align="center">Administrator Sign in</h1>
         <br>
         <form class="form1" action="/adminlogin" method="POST">
             
               <label for="adminname">Username</label> <br>
-              <input name="adminname" type="text" align="center" placeholder="Enter Username" required>
+              <input name="adminname"  id="adminname" type="text" align="center" placeholder="Enter Username" required>
               <br>
               <br>
               <label for="password">Password</label> <br>
-              <input name="password" type="password" align="center" placeholder=" Enter Password">
+              <input name="password" id="password" type="password" align="center" placeholder=" Enter Password">
               <br>
               {{#if error}}
                 <p class="error">
@@ -21,7 +21,6 @@
               <button class="bttn" type="submit" align="center">Sign in</button>
             <br>
             <br>
-            <p class="signup" align="center"><a href="/signup">No Account?</p>
             <p>Not an Administrator?<a href="/">Log in here</a></p>    
 
                 

@@ -2,9 +2,15 @@
 <h1 class="he"><a href="/logout">Logout</a></h1> 
 <h2 class="hea"><a href="/admin">Back</a></h2>    
 <form action="/admin/createGroup" method="POST">
-    <input name="name" type="text" align="center" placeholder="Enter a name for the group">
-    <input name="ltg" type="text" align="center" placeholder="Enter a long term goal">
-    <input name="announcements" type="text" align="center" placeholder="Enter announcements">
+
+    <label for="name">Enter a Group Name</label> <br>
+    <input name="name" id="name" type="text" align="center" placeholder="Enter a name for the group">
+
+    <label for="ltg">Enter a long term goal</label> <br>
+    <input name="ltg" id="ltg" type="text" align="center" placeholder="Enter a long term goal">
+
+    <label for="announcements">Enter announcements</label> <br>
+    <input name="announcements" id="announcements" type="text" align="center" placeholder="Enter announcements">
 
     <button type="submit">Create Group</button>
 
