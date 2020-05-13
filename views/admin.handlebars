@@ -2,31 +2,26 @@
     {{#each users}}
     <p>{{username}}</p>
 
-<form action="" method="">
-<button name="get-posts" id="get-posts">Show posts</button>
-</form>
 
-<div id="user-posts" class="hidden">
-{{#each posts}}
-{{id}}
-<form action="/admin/posts/{{_id}}" method="POST">
+    <button name="get-posts" id="get-posts">Show posts</button>
 
-    <input type="hidden" name="_method" value="DELETE">
 
-    <button name="deletep">Delete Post</button>
-</form>
-{{/each}}
-</div>
+    <div id="user-posts" class="hidden">
+    {{#each posts}}
+    {{id}}
+    <form action="/admin/posts/{{_id}}" method="POST">
 
-<form action="/admin/user/{{_id}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
 
-    <input type="hidden" name="_method" value="DELETE">
+        <button name="deletep">Delete Post</button>
+    </form>
+    {{/each}}
+    </div>
 
-    <button name="deleteu">Delete User</button>
-</form>
-{{/each}}
+    <form action="/admin/user/{{_id}}" method="POST">
 
-    <form action="/admin/user/{{_id}}" method="DELETE">
+        <input type="hidden" name="_method" value="DELETE">
+
         <button name="deleteu">Delete User</button>
     </form>
     {{/each}}
