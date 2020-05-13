@@ -12,22 +12,23 @@
         </ul>
     </div>
 </div>
+<div class="body">
+    <h2>Add Health Data</h2>
+    <form action="/health/update" method="POST">
 
-<h2>Add Health Data</h2>
-<form action="/health/update" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
 
-    <input type="hidden" name="_method" value="PATCH">
+        <input name="height" type="text" align="center" placeholder="Height">
+        <input name="weight" type="text" align="center" placeholder="Weight">
+        <input name="mc" type="text" align="center" placeholder="Medical Conditions">
+        <input name="BMI" type="text" align="center" placeholder="BMI">
+        <input name="BF" type="text" align="center" placeholder="bf%">
+        <button type="submit">Submit Health Data</button>
 
-    <input name="height" type="text" align="center" placeholder="Height">
-    <input name="weight" type="text" align="center" placeholder="Weight">
-    <input name="mc" type="text" align="center" placeholder="Medical Conditions">
-    <input name="BMI" type="text" align="center" placeholder="BMI">
-    <input name="BF" type="text" align="center" placeholder="bf%">
-    <button type="submit">Submit Health Data</button>
-
-    {{#if blank}}
-    <p class="error">
-        At least one field must be changed
-    </p>
-    {{/if}}
-</form>
+        {{#if blank}}
+        <p class="error">
+            At least one field must be changed
+        </p>
+        {{/if}}
+    </form>
+</div>

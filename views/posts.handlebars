@@ -12,14 +12,14 @@
         </ul>
     </div>
 </div>
-
-<p><a href="/posts/add">Create New Post</a></p>
-<section>
-  {{#each posts}}  
-    <article class="post">
-      <img src={{img}}>
-      <p>{{caption}}</p>
-    </article>
-  {{/each}}
-</section>
-
+<div class="body">
+  <p class="newpost"><a href="/posts/add">Create New Post</a></p>
+  <section>
+    {{#each posts}}  
+      <article class="post">
+        <img src={{img}}>
+        <p>{{caption}}</p>
+      </article>
+    {{/each}}
+  </section>
+</div>

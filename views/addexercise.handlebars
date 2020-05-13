@@ -12,26 +12,27 @@
         </ul>
     </div>
 </div>
+<div class="body">
+    <h2>Add Exercise Data</h2>
+    <form action="/exercise/add" method="POST">
 
-<h2>Add exercise Data</h2>
-<form action="/exercise/add" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
 
-    <input type="hidden" name="_method" value="PATCH">
-
-    <select id="type" name="type">
-        <option value="Indoor">Indoor</option>
-        <option value="Outdoor">Outdoor</option>
-        <option value="Other">Other</option>
-    </select>
+        <select id="type" name="type">
+            <option value="Indoor">Indoor</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Other">Other</option>
+        </select>
 
 
-    <input name="sport" type="text" placeholder="description of exercise">
+        <input name="sport" type="text" placeholder="description of exercise">
 
-    <button type="submit">Submit Exercise</button>
+        <button type="submit">Submit Exercise</button>
 
-    {{#if miss}}
-    <p class="error">
-        You must choose a type and enter a description
-    </p>
-    {{/if}}
-</form>
+        {{#if miss}}
+        <p class="error">
+            You must choose a type and enter a description
+        </p>
+        {{/if}}
+    </form>
+</div>
