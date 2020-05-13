@@ -21,5 +21,6 @@ module.exports = {
   health: getCollectionFn("health"),
   posts: getCollectionFn("posts"),
   groups: getCollectionFn("groups"),
-  exercise: getCollectionFn("exercise")
+  exercise: getCollectionFn("exercise"),
+  admin: getCollectionFn("admin")
 };

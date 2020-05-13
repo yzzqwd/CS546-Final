@@ -1,0 +1,30 @@
+<body>
+    <div class="main">
+        <h2 class="sign" align="center">Welcome!</h2>
+        <h3 class="subtitle" align="center">Please sign in below</h3>
+        <br>
+        <form class="form1" action="/adminlogin" method="POST">
+            
+              <label for="adminname">Username</label> <br>
+              <input name="adminname" type="text" align="center" placeholder="Enter Username" required>
+              <br>
+              <br>
+              <label for="password">Password</label> <br>
+              <input name="password" type="password" align="center" placeholder=" Enter Password">
+              <br>
+              {{#if error}}
+                <p class="error">
+                Incorrect username or password
+                </p>
+              {{/if}} 
+              <br>
+              <br>
+              <button class="bttn" type="submit" align="center">Sign in</button>
+            <br>
+            <br>
+            <p class="signup" align="center"><a href="/signup">No Account?</p>
+            <p>Not an Administrator?<a href="/">Log in here</a></p>    
+
+                
+    </div> 
+</body>

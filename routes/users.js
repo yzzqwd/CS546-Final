@@ -58,8 +58,8 @@ router.post('/adminlogin', async (req, res) => {
     let admin = {};
 
     try {
-        admin = await adminData.getByAdminname(adminname);
-        result = await bycrypt.compare(password, admin.hashedPassword);
+        admin = await adminData.getByUserName(adminname);
+        result = await bcrypt.compare(password, admin.hashedPassword);
     } catch (e) {
         console.log(e);
     }
