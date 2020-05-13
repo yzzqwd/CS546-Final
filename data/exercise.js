@@ -40,7 +40,7 @@ module.exports = {
 		if (deletionInfo.deletedCount === 0) {
 			throw `Could not delete exercises of user with id of ${id}`;
 		}
-		return h;
+		return;
 	},
 	async addOutdoors(userId,outdoors) {
 		if (!userId) throw 'You must provide an userId';

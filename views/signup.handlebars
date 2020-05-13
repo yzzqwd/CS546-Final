@@ -34,6 +34,15 @@
 
             <label for="pass2">Confirm Password</label> <br>
             <input name="pass2" type="password" align="center" placeholder="Confirm Password"> <br>
+
+            {{#if miss}}
+                <p class="error">You must provide all information</p>
+            {{/if}}
+
+            {{#if used}}
+                <p class="error">The username or email is already taken</p>
+            {{/if}}
+
             <button name="submit" align="center">Sign up</button>
         </form>
             <p class="signup" align="center"><a href="/">Already have an account?</p>         

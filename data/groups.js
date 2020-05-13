@@ -1,10 +1,13 @@
 const mongoCollections = require('../config/mongoCollections');
 const groups = mongoCollections.groups;
 const uuid = require('uuid');
+const ObjectID = require('mongodb').ObjectID
+
 module.exports = {
     async get(id) {
 		if (!id) throw 'You must provide an id to search for';
 		const groupsCollection = await groups();
+		id = ObjectID(id)
 		const group = await groupsCollection.findOne({ _id: id });
 		if (group === null) throw 'No group with that id';
 		return group;
@@ -21,7 +24,7 @@ module.exports = {
         if (!announcements) throw 'You must provide announcements';
 		const groupsCollection = await groups();
 		let newG = {
-			_id: uuid(),
+			//_id: uuid(),
             name:name,
             members:[],
             ltg:ltg,
