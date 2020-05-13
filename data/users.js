@@ -20,6 +20,14 @@ module.exports = {
 		if (user === null) throw 'No user with that username';
 		return user;
 	},
+	async getByEmail(e) {
+		if (!e) throw 'You must provide username to search for';
+		const usersCollection = await users();
+		const user = await usersCollection.findOne({ email: e });
+		if (user === null) throw 'No user with that eamil';
+		return user;
+	},
+	
 	async getAll() {
 		const usersCollection = await users();
 		const userList = await usersCollection.find({}).toArray();

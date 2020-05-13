@@ -8,11 +8,11 @@ const exerciseData = data.exercise;
 const groupData = data.groups;
 
 router.get('/', async (req, res) => {
-    let userList = [];
+    let users = [];
 
     try {
-        userList = await userData.getAll();
-        for (let x of userList) {
+        users = await userData.getAll();
+        for (let x of users) {
             for (i = 0; i < x.posts.length; i++) {
                 x.posts[i] = await postData.get(x.post[i]);
             }
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 
     res.render('admin', {
-        userList: userList
+        users: users
     });
 });
 
@@ -45,7 +45,7 @@ router.post('/createGroup', async (req, res) => {
 
     try {
         await groupData.create(name, ltg, announcements);
-        res.redirect('admin');
+        res.redirect('/admin');
     } catch (e) {
         res.render('newgroup');
     }
