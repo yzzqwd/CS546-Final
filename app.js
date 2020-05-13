@@ -63,8 +63,9 @@ app.use('/admin', async (req, res, next) => {
 });
 
 app.use(async (req, res, next) => {
-	if (req.body._method) {
-		req.method = req.body._method;
+	if (req.body && req.body._method) {
+        req.method = req.body._method;
+        delete req.body._method;
 	}
 	next();
 })
