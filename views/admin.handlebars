@@ -1,5 +1,6 @@
-{{#each users}}
-<p>{{username}}</p>
+<div align="center" class="body">
+    {{#each users}}
+    <p>{{username}}</p>
 
 <form action="" method="">
 <button name="get-posts" id="get-posts">Show posts</button>
@@ -25,3 +26,8 @@
 </form>
 {{/each}}
 
+    <form action="/admin/user/{{_id}}" method="DELETE">
+        <button name="deleteu">Delete User</button>
+    </form>
+    {{/each}}
+</div>
