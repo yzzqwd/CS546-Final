@@ -6,11 +6,14 @@
 <div id="user-posts" class="hidden">
 {{#each posts}}
 {{id}}
-<button name="deletep">Delete Post</button>
+<form action="/admin/posts/{{_id}}" method="DELETE">
+    <button name="deletep">Delete Post</button>
+</form>
 {{/each}}
 </div>
 
-
-<button name="deleteu">Delete User</button>
+<form action="/admin/user/{{_id}}" method="DELETE">
+    <button name="deleteu">Delete User</button>
+</form>
 {{/each}}
 
