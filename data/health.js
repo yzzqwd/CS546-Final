@@ -26,7 +26,7 @@ module.exports = {
             userId:userId,
             height:0,
             weight:0,
-            medicalConditions:"",
+            medicalConditions:"Healthy",
             BMI:0,
             BF:0
 		};
