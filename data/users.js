@@ -68,7 +68,8 @@ module.exports = {
     
 	async remove(id) {
 		if (!id) throw 'You must provide an id to search for';
-        const usersCollection = await users();
+		const usersCollection = await users();
+		id = ObjectID(id)
         const user = await this.get(id);
 		const deletionInfo = await usersCollection.deleteOne({ _id: id });
 		if (deletionInfo.deletedCount === 0) {
