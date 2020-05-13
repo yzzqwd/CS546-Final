@@ -5,13 +5,14 @@ const userData = data.users;
 const healthData = data.health;
 const exerciseData = data.exercise;
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     res.render('signup');
 });
 
 router.post('/', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     const firstname = input['firstname'];
     const lastname = input['lastname'];
     const email = input['email'];

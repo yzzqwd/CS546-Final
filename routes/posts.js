@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const userData = data.users;
 const postData = data.posts;
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     let posts = [];
@@ -29,7 +30,7 @@ router.get('/add', async (req, res) => {
 });
 
 router.post('/add', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     const caption = input['caption'];
     const img = input['img'];
     const time = new Date();

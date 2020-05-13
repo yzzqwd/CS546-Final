@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const userData = data.users;
 const groupData = data.groups;
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     const userId = req.session.user.userId;
@@ -53,7 +54,7 @@ router.get('/showAllGroups', async (req, res) => {
 });
 
 router.patch('/showAllGroups', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     let group_id = input['group_id'];
     const userId = req.session.user.userId;
     let user = {};

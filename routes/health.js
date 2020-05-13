@@ -4,6 +4,7 @@ const data = require('../data');
 const userData = data.users;
 const healthData = data.health;
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     const userId = req.session.user.userId;
@@ -38,7 +39,7 @@ router.get('/updateUser', async (req, res) => {
 
 router.patch('/updateUser', async (req, res) => {
     const userId = req.session.user.userId;
-    const input = req.body;
+    const input = xss(req.body);
     let firstname = input['firstname'];
     let lastname = input['lastname'];
     let email = input['email'];
@@ -95,7 +96,7 @@ router.patch('/updateUser', async (req, res) => {
 
 router.patch('/update', async (req, res) => {
     const userId = req.session.user.userId;
-    const input = req.body;
+    const input = xss(req.body);
     let weight = input['weight'];
     let height = input['height'];
     let mc = input['mc'];

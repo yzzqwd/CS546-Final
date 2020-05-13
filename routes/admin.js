@@ -6,6 +6,7 @@ const postData = data.posts;
 const healthData = data.health;
 const exerciseData = data.exercise;
 const groupData = data.groups;
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     let users = [];
@@ -31,7 +32,7 @@ router.get('/createGroup', async (req, res) => {
 })
 
 router.post('/createGroup', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     const name = input['name'];
     const ltg = input['ltg'];
     const announcements = input['announcements'];

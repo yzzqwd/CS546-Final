@@ -4,6 +4,7 @@ const data = require('../data');
 const userData = data.users;
 const adminData = data.admin;
 const bcrypt = require('bcryptjs');
+const xss = require('xss');
 
 router.get('/', async (req, res) => {
     if (req.session.user) {
@@ -27,7 +28,7 @@ router.get('/logout', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     const username = input['un '];
     const password = input['pass'];
     let result = false;
@@ -51,7 +52,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/adminlogin', async (req, res) => {
-    const input = req.body;
+    const input = xss(req.body);
     const adminname = input['adminname'];
     const password = input['password'];
     let result = false;
