@@ -1,6 +1,6 @@
 # CS546-Final
 Group 3 Final Project CS546 | Fitness Web Application
-Group Members: Ava Tartaglia, Joe Naiburg, Quishi Chu, Yang Zhou
+Group Members: Ava Tartaglia, Joe Naiburg, Quishi Chu, Zhuo Yang
 
 This is a Fitnes Web Application that provides users with a platform to track their fitness progress while incorporating an aspect of social media. 
 
