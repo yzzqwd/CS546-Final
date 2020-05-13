@@ -77,7 +77,7 @@ module.exports = {
 		await groups.removeUserFromGroup(user.group_id,id);
 		return user;
 	},
-	async updateUser(userId,firstName, lastName, username,gender,email,city,state,age,hashedPassword,posts,group_id) {
+	/*async updateUser(userId,firstName, lastName, username,gender,email,city,state,age,hashedPassword,posts,group_id) {
 		if (!userId) throw 'You must provide userId';
 		if (!firstName) throw 'You must provide a firstname';
         if (!lastName) throw 'You must provide a lastname';
@@ -88,6 +88,7 @@ module.exports = {
 		if (!state) throw 'You must provide state';
 		if (!group_id) throw 'You must provide group_id';
 		if (!age || typeof(age) !== 'number') throw 'You must provide a vaild age';
+		console.log('1');
 		const usersCollection = await users();
 		let newUser = {
 			firstName: fristName,
@@ -102,11 +103,23 @@ module.exports = {
 			posts:posts,
 			group_id:group_id
 		};
+		console.log("2");
 		userId = ObjectID(userId)
 		const updatedInfo = await usersCollection.updateOne({_id:userId},{$set:newUser});
+		console.log("3");
 		if (updatedInfo.modifiedCount === 0) throw 'Could not update user';
+		console.log("4");
 		return await this.get(userId);
-	},
+	},*/
+	async updateGroup(id,group_id) {
+		if(!id) throw 'You must provide id to update';
+		if(!group_id) throw 'You must provide group id to update';
+		id = ObjectID(id)
+		const usersCollection = await users();
+		const updateInfo = await usersCollection.updateOne({_id:id},{$set:{group_id:group_id}});
+		if(!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Cound not update user group';
+		return true;
+ 	},
 	async addPostToUser(id,postId) {
 		id = ObjectID(id)
 		const usersCollection = await users();
