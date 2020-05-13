@@ -128,7 +128,7 @@ router.patch('/update', async (req, res) => {
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
         res.redirect('/health');
     } catch (e) {
-        console.loe(e);
+        console.log(e);
         res.render('addhealth');
     }
 });
