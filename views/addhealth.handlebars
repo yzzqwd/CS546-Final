@@ -18,11 +18,21 @@
 
         <input type="hidden" name="_method" value="PATCH">
 
-        <input name="height" type="text" align="center" placeholder="Height">
-        <input name="weight" type="text" align="center" placeholder="Weight">
-        <input name="mc" type="text" align="center" placeholder="Medical Conditions">
-        <input name="BMI" type="text" align="center" placeholder="BMI">
-        <input name="BF" type="text" align="center" placeholder="bf%">
+        <label for="height">Height</label> <br>
+        <input name="height" id="height" type="text" align="center" placeholder="Height"> <br>
+
+        <label for="weight">Weight</label> <br>
+        <input name="weight" id="weight" type="text" align="center" placeholder="Weight"> <br>
+
+        <label for="mc">Medical Conditions</label> <br>
+        <input name="mc" id="mc" type="text" align="center" placeholder="Medical Conditions"> <br>
+
+        <label for="BMI">BMI</label> <br>
+        <input name="BMI" id="BMI" type="text" align="center" placeholder="BMI"> <br>
+
+        <label for="BF">BF%</label> <br>
+        <input name="BF" id="BF" type="text" align="center" placeholder="bf%"> <br>
+
         <button type="submit">Submit Health Data</button>
 
         {{#if blank}}

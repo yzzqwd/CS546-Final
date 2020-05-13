@@ -10,7 +10,6 @@ module.exports = {
         if (!time) throw 'You must provide a time.';
         const postCollection = await posts();
         let newP = {
-           // _id: uuid(),
             userId:userId,
             img:img,
             caption:caption,
@@ -19,7 +18,6 @@ module.exports = {
         const insertInfo = await postCollection.insertOne(newP);
         if (insertInfo.insertedCount === 0) throw 'Could not add post';
         const newId = insertInfo.insertedId;
-        //const newId = newP._id
         await users.addPostToUser(userId,newId);
 		return await this.get(newId);
     },

@@ -1,20 +1,35 @@
-    <h2>Groups</h2>
+<div class="header">
+    <div class="inner">
+        <div class="logo">
+            <h1>Fitness Site</h1>
+        </div>
+        <ul class="navigate">
+            <a href="/posts"><li>Home</li></a>
+            <a href="/health"><li>Health</li></a>
+            <a href="/exercise"><li>Exercise</li></a>
+            <a href="/group"><li>Group</li></a>
+            <a href="/logout"><li>Logout</li></a>
+        </ul>
+    </div>
+</div>
+    
+    <h1>Groups</h1>
 
     {{#each groupList}}
     <div>
-    <h3>{{name}}</h3>
+    <h2>{{name}}</h2>
     <p>{{_id}}</p>
     </div>
     {{/each}}
 
-<h2>Join a Group</h2>
+<h3>Join a Group</h3>
 <form action="/group/showAllGroups" method="POST">
 
     <input type="hidden" name="_method" value="PATCH">
 
     <label for="group_id">Enter the id of the group you want to join</label>
 
-    <input name="group_id" type="text" align="center" placeholder="id">
+    <input name="group_id" id="group_id" type="text" align="center" placeholder="id">
     
 
     <button type="submit">Join</button>

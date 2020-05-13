@@ -16,15 +16,14 @@
   <p class="newpost"><a href="/posts/add">Create New Post</a></p>
   <section>
     {{#each posts}}  
-    <br>
-    <br>
-    <br>
       <article class="post">
-        {{!-- need to change the style to be more beautiful --}}
         <p>{{username}}</p>
         <p>{{caption}}</p>
-        <img src={{img}}>        
+        <img src={{img}} alt="Post">        
       </article>
+      <br>
+      <br>
+      <br>
     {{/each}}
     <br>
     <br>
