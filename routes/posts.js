@@ -5,24 +5,21 @@ const userData = data.users;
 const postData = data.posts;
 
 router.get('/', async (req, res) => {
-    const userId = req.session.user.userId;
-    let user = {};
+    let posts = [];
         
     try {
-        /*user = await userData.get(userId);
-        for (i = 0; i < user.posts.length; i++) {
-            user.posts[i] = await postData.get(user.post[i]);
-        }*/
-        posts = await postData.getAll()
-        //console.log(posts)
+        posts = await postData.getAll();
+        for (let x of posts) {
+            const user = await userData.get(x.userId);
+            const username = user.username;
+            x.username = username;
+        }
     } catch (e) {
         console.log(e);
     }
         
     res.render('posts', {
-       // posts: user.posts
         posts: posts
-
     });
 });
 

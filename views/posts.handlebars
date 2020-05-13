@@ -17,8 +17,10 @@
   <section>
     {{#each posts}}  
       <article class="post">
-        <img src={{img}}>
+        {{!-- need to change the style to be more beautiful --}}
+        <p>{{username}}</p>
         <p>{{caption}}</p>
+        <img src={{img}}>        
       </article>
     {{/each}}
   </section>
