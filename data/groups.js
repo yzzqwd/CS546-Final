@@ -56,7 +56,7 @@ module.exports = {
 	async removeUserFromGroup(id,userId) {
 		const groupsCollection = await groups();
 		id = ObjectID(id)
-		const updateInfo = await groupsCollection.updateOne({_id:id},{$pull:{members:{id:userId}}});
+		const updateInfo = await groupsCollection.updateOne({_id:id},{$pull:{membersuserId}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove user from group';
 		return true;
 	}
