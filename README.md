@@ -8,8 +8,7 @@ How to use this app
 
 Step 1:
 
-Before running the app you need to run "node ./tasks/seed.js" to create the starting users/admin and their data.
-Then you can start the app using the command 'npm start'
+Before running the app you need run 'npm install' to gather the dependencies. Then run 'node ./tasks/seed.js' to create the starting users/admin and their data. Lastly, you can start the app using the command 'npm start'
 
 Step 2: 
 
