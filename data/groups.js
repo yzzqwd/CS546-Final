@@ -37,7 +37,7 @@ module.exports = {
     },
     
 	async remove(id) {
-		if (!id) throw 'You must provide an id to search for';
+		if (!id) throw 'You must provide an id to search for a group';
         const groupsCollection = await groups();
         const group = await this.get(id);
 		const deletionInfo = await groupsCollection.deleteOne({ _id: id });
@@ -56,7 +56,7 @@ module.exports = {
 	async removeUserFromGroup(id,userId) {
 		const groupsCollection = await groups();
 		id = ObjectID(id)
-		const updateInfo = await groupsCollection.updateOne({_id:id},{$pull:{membersuserId}});
+		const updateInfo = await groupsCollection.updateOne({_id:id},{$pull:{members:userId}});
 		if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not remove user from group';
 		return true;
 	}
