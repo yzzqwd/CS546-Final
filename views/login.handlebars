@@ -1,5 +1,6 @@
 <body>
     <div class="main">
+    <div id="hide">
         <h1 class="sign" align="center">Welcome!</h1>
         <h2 class="subtitle" align="center">Please sign in below</h3>
         <br>
@@ -22,10 +23,13 @@
               <button class="bttn" type="submit" align="center">Sign in</button>
             <br>
             <br>
-            <p class="signup" align="center"><a href="/signup">No Account?</a></p>
-            <p><a href="/adminlogin">Administrator Login</a></p>    
-
-                
+            <p><a href="/adminlogin">Administrator Login</a></p> 
+    </div>
+            <body>
+            <button id="reveal" onclick="sendTheAJAX()" class="button"> No Account?</button>
+            <div id="ajax-content">
+            </div>
+            </body>   
     </div> 
 </body>
-
+<script src="/public/js/ajax.js"></script>
