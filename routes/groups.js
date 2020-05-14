@@ -22,7 +22,12 @@ router.get('/', async (req, res) => {
 
     if (exist) {
         res.render('group', {
-            group: group
+            group: group,
+            name: group.name,
+            ltg: group.ltg,
+            members: group.members,
+            announcements: group.announcements
+
         });
     } else {
         res.render('group', {
@@ -66,8 +71,8 @@ router.patch('/showAllGroups', async (req, res) => {
             await groupData.removeUserFromGroup(oldGroup_id, userId);
         }
         await groupData.addUserToGroup(group_id, userId);
-        await userData.updateUser(userId, user.firstName, user.lastName, user.username, user.gender, user.email, user.city, user.state, user.age, user.posts, group_id);
-        res.redirect('/groups');
+        await userData.updateGroup(userId,group_id);
+        res.redirect('/group');
     } catch (e) {
         res.render('allGroups');
     }

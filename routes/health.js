@@ -95,13 +95,11 @@ router.patch('/updateUser', async (req, res) => {
 
 router.patch('/update', async (req, res) => {
     const userId = req.session.user.userId;
-    const input = xss(req.body);
     let weight = xss(req.body['weight']);
     let height = xss(req.body['height']);
     let mc = xss(req.body['mc']);
     let BMI = xss(req.body['BMI']);
-    let BF = xss(req.body['BF']);
-    
+    let BF = xss(req.body['BF']);   
 
     if (!weight && !height && !mc && !BMI && !BF) {
         res.render('addhealth', {
@@ -130,7 +128,10 @@ router.patch('/update', async (req, res) => {
         await healthData.updateHealth(userId, height, weight, mc, BMI, BF);
         res.redirect('/health');
     } catch (e) {
-        res.render('addhealth');
+        res.render('addhealth', {
+            error: true,
+            type: e
+        });
     }
 });
 

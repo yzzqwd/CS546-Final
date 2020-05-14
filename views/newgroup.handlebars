@@ -12,6 +12,10 @@
     <label for="announcements">Enter announcements</label> <br>
     <input name="announcements" id="announcements" type="text" align="center" placeholder="Enter announcements">
 
+    {{#if miss}}
+        <p class="error">You must provide all information</p>
+    {{/if}}
+    
     <button type="submit">Create Group</button>
 
 </form>

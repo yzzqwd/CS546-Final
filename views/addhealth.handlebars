@@ -40,5 +40,11 @@
             At least one field must be changed
         </p>
         {{/if}}
+
+        {{#if error}}
+        <p class="error">
+            {{type}}
+        </p>
+        {{/if}}
     </form>
 </div>
